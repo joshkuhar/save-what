@@ -16,10 +16,6 @@ describe('app', function() {
                 done();
             });
     });
-
-    it('should add an item on post');
-    it('should edit an item on put');
-    it('should delete an item on delete');
 });
 
 
