@@ -3,7 +3,7 @@ node_js: node
 deploy:
   provider: heroku
   api_key:
-    secure: <YOUR ENCRYPTED KEY HERE>
+    secure: jqpEOKbrZCkdrf3VqjeJaDTo+93geUjQMVLnEX/haaWvFvpIndl1GVly/vT8kARaoYPWzyKUT0fmpbSkVjW9sexUbtmmcVF5ywibtBG+Kkikwr3UGmc0vJIxU6I48cz4iAfEH8QfDi2s3KAYsKGAzSdXgoVCtUMBJYYhcU9SAXmiRF9uPhkxo3sDVXciPvGgxsH60UUMDoID/RSMELkhFUmSGJTzLg6ZE2nfEpyL3P3qHVCGcrjt83ujXO/tt1q3aL40JD9aBnjIpwVxa27vMqVTWW10FIWlRV1dQR2PYjOCDiyGfc5Ed6cUBzdCCiQMbGMWQXmcWZI2Zm+bfnHFlPABXVOqomxU0exv2aqs9F9xIIv7ZoUUTTezA9rLQGiLmpLoBezbDHvB0aHrE2QsyQXbYcf6zDWnkBw2KufnzEu3txQIyJsjSumv4q6s4HVmBzffZfe8jjdaatYOJjpFUVNZpg+EHHWvURyYGAG6RNxEmI4pg58w9nC0tjwqpq7uiFwV1B/a3iz/OSbrldH72J8SdRzwggxR8wKLejr0sVs1NGKaMjpP3rsBIQicagwwxSX245/Fbbdi2YSj5oxbaeVBtsvhwnygonJiDh5Y7Y69NjNSFKCRXUYVjunXpjqhUdbknWJbQJqdhE/j8eZPLyrl0FIX4HiNsIs4swDDdJU=
   app: <YOUR APP NAME HERE>
   on:
     repo: gentle-citadel-11715
