@@ -6,4 +6,4 @@ deploy:
     secure: 
       app: 
   on:
-    repo: gentle-citadel-11715
+    repo: app
