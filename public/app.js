@@ -40,9 +40,23 @@ var MOCK_HISTORY = {
 };
 
 var getItem = MOCK_HISTORY.History[0].Item;
-
-$('input').click(function(){
-    console.log(getItem);
-    $("#item").text(getItem.Item);
-    $("#price").text(getItem.Price);
+// Get history from user
+$('#submit').click(function(){
+    var itemBought = $('#item-bought').val();
+    var pricePaid = $('#price-paid').val();
+    var age = $('#age').val();
+    $("#item").text(itemBought);
+    $("#actual-price").text(pricePaid);
 });
+
+// Calculate true cost
+
+
+
+
+
+
+
+
+
+
