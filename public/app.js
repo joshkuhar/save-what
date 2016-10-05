@@ -1,32 +1,36 @@
-var MOCK_STATUS_UPDATES = {
-    "statusUpdates": [
+var MOCK_HISTORY = {
+    "History": [
         {
             "id": "1111111",
-            "text": "Can't believe how much fun I'm having.",
-            "friendId": "aaaaaa",
-            "friendName": "John Doe",
-            "publishedAt": 1470016976609
+            "Name": "Bill",
+            {
+                "Item": "Drinks",
+                "Price": "10"
+            }
         },
         {
             "id": "2222222",
-            "text": "Have FOMO? Well you SHOULD!",
-            "friendId": "bbbbbbb",
-            "friendName": "Jane Doe",
-            "publishedAt": 1470012976609
+            "Name": "John",
+            {
+                "Item": "Hat",
+                "Price": "12"
+            }
         },
         {
             "id": "333333",
-            "text": "They're giving out immortality and free $$$ where I am.",
-            "friendId": "cccc",
-            "friendName": "Jim Doe",
-            "publishedAt": 1470011976609
+            "Name": "Lisa",
+            {
+                "Item": "T.V.",
+                "Price": "400"
+            }
         },
         {
             "id": "4444444",
-            "text": "humble brag humble brag humble brag",
-            "friendId": "ddddd",
-            "friendName": "Jackie Doe",
-            "publishedAt": 1470009976609
+            "Name": "Tom",
+            {
+                "Item": "Bike",
+                "Price": "200"
+            }
         }
     ]
 };
