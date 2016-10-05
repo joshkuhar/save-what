@@ -17,24 +17,6 @@ var MOCK_HISTORY = {
                 "Item": "Hat",
                 "Price": "12"
             }
-        },
-        {
-            "id": "333333",
-            "Username": "Lisa",
-            "Age": "35",
-            "Item": {
-                "Item": "T.V.",
-                "Price": "400"
-            }
-        },
-        {
-            "id": "4444444",
-            "Username": "Tom",
-            "Age": "40",
-            "Item": {
-                "Item": "Bike",
-                "Price": "200"
-            }
         }
     ]
 };
@@ -48,7 +30,7 @@ var calculate = function(price, multiplyer) {
 
 var addHistory = function(id, username, age, item){
     MOCK_HISTORY.History.push({"id": id, "Username": username,
-                                "Age": age});
+                                "Age": age, "Item": {"Item": item}});
 }
 
 
@@ -56,7 +38,7 @@ $('#submit').click(function(){
     var itemBought = $('#item-bought').val();
     var pricePaid = $('#price-paid').val();
     var age = $('#age').val();
-    addHistory("5555", "Zen", age);
+    addHistory("5555", "Zen", age, itemBought);
     var actualPricePaid = calculate(pricePaid, 5);
     $("#item").text(itemBought);
     $("#actual-price").text(actualPricePaid);
