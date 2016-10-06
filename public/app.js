@@ -64,7 +64,6 @@ var display = function(item){
 $('#submit').click(function(){
     var itemBought = $('#item-bought').val();
     var pricePaid = $('#price-paid').val();
-    // addHistory("5555", "Zen", itemBought);
     var actualPricePaid = calculate(pricePaid, 5);
     $("#item").text(itemBought);
     $("#actual-price").text(actualPricePaid);
