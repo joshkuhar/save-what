@@ -30,6 +30,9 @@ var getItem = MOCK_HISTORY.History[0].Item;
 // test db and endpoints
 var data = {pass: 'Yes'};
 
+var printLine = function(result){
+    $('#test').append(data.pass);
+}
 
 $('#testBttn').click(function(){
     getPage();
@@ -37,12 +40,13 @@ $('#testBttn').click(function(){
 });
 
 var getPage = function(){
-    var ajax = $.ajax('http://localhost:8080/a', {
+    var ajax = $.ajax('/a', {
         type: 'GET',
         dataType: 'json'
     });
     ajax.done(  function  (result)    {
         console.log(result);
+        printLine(result);
     });
 
 };
