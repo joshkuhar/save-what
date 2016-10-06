@@ -23,6 +23,7 @@ var MOCK_HISTORY = {
 
 var getItem = MOCK_HISTORY.History[0].Item;
 
+
 // calculates function
 var calculate = function(price, multiplyer) {
     return price * multiplyer;
@@ -38,6 +39,26 @@ var createAccount = function(username, password) {
     MOCK_HISTORY.History.push({"id": "3333333", "Username": username, 
                                 "Password": password });
 };
+
+// login function
+var login = function(username, password){
+    for (var user in MOCK_HISTORY.History){
+        if(MOCK_HISTORY.History[user].Username == username && MOCK_HISTORY.History[user].Password == password){
+            console.log("Yes " + username + " Yes " + password);
+            return true;
+        } else {
+            console.log("wrong password");
+        }
+    }
+
+};
+// display previous purchases
+var display = function(item){
+    $.each(item, function(index, value){
+        console.log(index + ': ' + value);
+        $('#previous-list').append(value + "<br>");
+    });
+}
 
 // grab info, calculate
 $('#submit').click(function(){
@@ -62,18 +83,17 @@ $('#submit-user').click(function(){
 $('#submit-login').click(function(){
     var username = $('#enter-username').val();
     var password = $('#enter-password').val();
-    for (var user in MOCK_HISTORY.History){
-        if(MOCK_HISTORY.History[user].Username == username && MOCK_HISTORY.History[user].Password == password){
-            console.log("Yes " + username + " Yes " + password);
-            return;
-        } else {
-            console.log("wrong password");
-        }
+    login(username, password);
+    $('#enter-username').val('');
+    $('#enter-password').val('');
+    // display history
+    if(login){
+        display(MOCK_HISTORY.History[0].Item);
     }
-
+    
 });
 
-// history
+
 
 
 
