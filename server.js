@@ -38,6 +38,8 @@ exports.runServer = runServer;
 
 var Item = require('./models/item');
 
+var data = {pass: 'Yes'};
+
 app.get('/', function(req, res) {
 	Item.find(function(err, items) {
 		if (err) {
@@ -49,8 +51,17 @@ app.get('/', function(req, res) {
 	});
 });
 
+app.get('/a', function(req, res) {
+	res.json(data);
+});
+
 app.use('*', function(req, res) {
     res.status(404).json({
         message: 'Not Found'
     });
 });
+
+
+
+
+
