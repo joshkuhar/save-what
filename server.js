@@ -58,6 +58,7 @@ app.get('/a', function(req, res) {
 app.post('/b', function(req, res) {
 	// console.log(req);
 	console.log(req.headers);
+	res.status(201).json(data);
 });
 
 // app.post('/b', function(req, res) {	

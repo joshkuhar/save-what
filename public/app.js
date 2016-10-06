@@ -61,7 +61,7 @@ var postToDB = function(data){
     });
     console.log('I am ' + data);
     ajax.done(  function  (result)    {
-        console.log('I am ' + result);
+        console.log('I am result' + result);
     }); 
 
 };
