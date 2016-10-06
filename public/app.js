@@ -35,7 +35,8 @@ var printLine = function(result){
 }
 
 $('#testBttn').click(function(){
-    getPage();
+    // getPage();
+    postToDB();
     // $('#test').append(data.pass);
 });
 
@@ -47,6 +48,17 @@ var getPage = function(){
     ajax.done(  function  (result)    {
         console.log(result);
         printLine(result);
+    });
+
+};
+
+var postToDB = function(){
+    var ajax = $.ajax('/b', {
+        type: 'POST',
+        dataType: 'json'
+    });
+    ajax.done(  function  (result)    {
+        console.log(result);
     });
 
 };
