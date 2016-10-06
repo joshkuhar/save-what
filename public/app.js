@@ -25,7 +25,32 @@ var MOCK_HISTORY = {
 
 var getItem = MOCK_HISTORY.History[0].Item;
 
-// 
+
+
+// test db and endpoints
+var data = {pass: 'Yes'};
+
+
+$('#testBttn').click(function(){
+    getPage();
+    // $('#test').append(data.pass);
+});
+
+var getPage = function(){
+    var ajax = $.ajax('http://localhost:8080/a', {
+        type: 'GET',
+        dataType: 'json'
+    });
+    ajax.done(  function  (result)    {
+        console.log(result);
+    });
+
+};
+
+
+
+
+
 
 // calculates function
 var calculate = function(price, multiplyer) {
