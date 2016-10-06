@@ -1,3 +1,5 @@
+
+
 var MOCK_HISTORY = {
     "History": [
         {
@@ -23,6 +25,7 @@ var MOCK_HISTORY = {
 
 var getItem = MOCK_HISTORY.History[0].Item;
 
+// 
 
 // calculates function
 var calculate = function(price, multiplyer) {
@@ -42,6 +45,7 @@ var createAccount = function(username, password) {
 
 // login function
 var login = function(username, password){
+    // user regular loop with constructor functions
     for (var user in MOCK_HISTORY.History){
         if(MOCK_HISTORY.History[user].Username == username && MOCK_HISTORY.History[user].Password == password){
             console.log("Yes " + username + " Yes " + password);
