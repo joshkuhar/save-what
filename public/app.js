@@ -36,7 +36,7 @@ var printLine = function(result){
 
 $('#testBttn').click(function(){
     // getPage();
-    postToDB();
+    postToDB(data);
     // $('#test').append(data.pass);
 });
 
@@ -52,17 +52,31 @@ var getPage = function(){
 
 };
 
-var postToDB = function(){
+var postToDB = function(data){
     var ajax = $.ajax('/b', {
         type: 'POST',
-        dataType: 'json'
+        dataType: 'json',
+        data: JSON.stringify(data),
+        contentType: 'application/json'
     });
+    console.log('I am ' + data);
     ajax.done(  function  (result)    {
-        console.log(result);
-    });
+        console.log('I am ' + result);
+    }); 
 
 };
-
+// ShoppingList.prototype.addItem = function(name) {
+//     var item = {
+//         'name': name
+//     };
+//     var ajax = $.ajax('/items', {
+//         type: 'POST',
+//         data: JSON.stringify(item),
+//         dataType: 'json',
+//         contentType: 'application/json'
+//     });
+//     ajax.done(this.getItems.bind(this));
+// };
 
 
 

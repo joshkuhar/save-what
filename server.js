@@ -56,17 +56,22 @@ app.get('/a', function(req, res) {
 });
 
 app.post('/b', function(req, res) {
-    Item.create({
-        name: req.body.name
-    }, function(err, item) {
-        if (err) {
-            return res.status(500).json({
-                message: 'Internal Server Error'
-            });
-        }
-        res.status(201).json(item);
-    });
+	// console.log(req);
+	console.log(req.headers);
 });
+
+// app.post('/b', function(req, res) {	
+//     Item.create({
+//         name: req.body.name
+//     }, function(err, item) {
+//         if (err) {
+//             return res.status(500).json({
+//                 message: 'Internal Server Error'
+//             });
+//         }
+//         res.status(201).json(item);
+//     });
+// });
 
 
 // app.post('/items', function(req, res) {
