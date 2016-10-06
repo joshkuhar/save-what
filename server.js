@@ -48,3 +48,9 @@ app.get('/', function(req, res) {
 		res.json(items);
 	});
 });
+
+app.use('*', function(req, res) {
+    res.status(404).json({
+        message: 'Not Found'
+    });
+});
