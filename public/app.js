@@ -35,8 +35,10 @@ var printLine = function(result){
 }
 
 $('#testBttn').click(function(){
-    // getPage();
-    postToDB(data);
+    getPage();
+    console.log(getPage);
+    console.log("button clicked");
+    // postToDB(data);
     // $('#test').append(data.pass);
 });
 
@@ -46,8 +48,8 @@ var getPage = function(){
         dataType: 'json'
     });
     ajax.done(  function  (result)    {
-        console.log(result);
-        printLine(result);
+        console.log(result[0].pass);
+        // printLine(result);
     });
 
 };
