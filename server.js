@@ -40,20 +40,34 @@ var Item = require('./models/item');
 
 var data = {pass: 'Yes'};
 
-app.get('/', function(req, res) {
-	Item.find(function(err, items) {
-		if (err) {
-			return res.status(500).json({
-				message: 'Internal Server Error'
-			});
-		}
-		res.json(items);
-	});
+app.get('/a', function(req, res) {
+	console.log(req);
+    Item.find(function(err, items) {
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+        res.json(items);
+    });
 });
 
-app.get('/a', function(req, res) {
-	res.json(data);
-});
+// app.get('/', function(req, res) {
+// 	console.log(req);
+// 	Item.find(function(err, items) {
+// 		if (err) {
+// 			return res.status(500).json({
+// 				message: 'Internal Server Error'
+// 			});
+// 		}
+// 		console.log(req);
+// 		res.json(items);
+// 	});
+// });
+
+// app.get('/a', function(req, res) {
+// 	res.json(data);
+// });
 
 // app.post('/b', function(req, res) {
 // 	// console.log(req);
