@@ -31,8 +31,6 @@ if (require.main === module) {
 	});
 };
 
-// app.listen(process.env.PORT || 8080);
-
 exports.app = app;
 exports.runServer = runServer;
 
