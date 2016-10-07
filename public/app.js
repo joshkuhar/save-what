@@ -30,16 +30,22 @@ var getItem = MOCK_HISTORY.History[0].Item;
 // test db and endpoints
 var data = {pass: 'Yes'};
 
-var printLine = function(result){
-    $('#test').append(data.pass);
-}
 
-$('#testBttn').click(function(){
+$('#bttnGet').click(function(){
     getPage();
-    console.log(getPage);
     console.log("button clicked");
-    // postToDB(data);
-    // $('#test').append(data.pass);
+});
+// $('#bttnPost').click(function(){
+//     postToDB(data);
+//     $('#test').append(" " + data.pass);
+//     console.log("button clicked");
+// });
+$('#bttnDelete').click(function(){
+    deleteFromDB(id);
+    console.log("button clicked");
+});
+$('#bttnPut').click(function(){
+    console.log("button clicked");
 });
 
 var getPage = function(){
@@ -48,12 +54,14 @@ var getPage = function(){
         dataType: 'json'
     });
     ajax.done(  function  (result)    {
-        console.log(result[0].pass);
-        // printLine(result);
+        console.log(result);
+        for (var x = 0; x<result.length; x++){
+            $('#get').append(result[x]._id + "<br>");
+        }
     });
 
 };
-
+//_id: "57f79f5ff5d7c303497a618a"
 var postToDB = function(data){
     var ajax = $.ajax('/b', {
         type: 'POST',
@@ -63,25 +71,28 @@ var postToDB = function(data){
     });
     console.log('I am ' + data);
     ajax.done(  function  (result)    {
+        console.log(result._id);
+        $('#test').append('<br>' + result._id);
         console.log('I am result' + JSON.stringify(result));
     }); 
-
 };
-// ShoppingList.prototype.addItem = function(name) {
-//     var item = {
-//         'name': name
-//     };
-//     var ajax = $.ajax('/items', {
-//         type: 'POST',
-//         data: JSON.stringify(item),
-//         dataType: 'json',
-//         contentType: 'application/json'
+var deleteFromDB = function(id){
+    var ajax = $.ajax('/b/' + id, {
+        type: 'DELETE',
+        dataType: 'json'
+    });
+    ajax.done( function (result) {
+        console.log(result);
+    });
+}
+
+// ShoppingList.prototype.deleteItem = function(id) {
+//     var ajax = $.ajax('/items/' + id, {
+//         type: 'DELETE',
+//         dataType: 'json'
 //     });
 //     ajax.done(this.getItems.bind(this));
 // };
-
-
-
 
 
 // calculates function
