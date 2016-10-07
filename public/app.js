@@ -61,7 +61,7 @@ var getPage = function(){
     });
 
 };
-//_id: "57f79f5ff5d7c303497a618a"
+
 var postToDB = function(data){
     var ajax = $.ajax('/b', {
         type: 'POST',
