@@ -61,7 +61,7 @@ var postToDB = function(data){
     });
     console.log('I am ' + data);
     ajax.done(  function  (result)    {
-        console.log('I am result' + result);
+        console.log('I am result' + JSON.stringify(result));
     }); 
 
 };
@@ -88,8 +88,13 @@ var calculate = function(price, multiplyer) {
 };
 // pushes information to mock database
 var addHistory = function(id, username, item){
-    MOCK_HISTORY.History.push({"id": id, "Username": username, "Password": "bar",
-                                "Item": {"Item": item}});
+    MOCK_HISTORY.History.push({"id": id, 
+                                "Username": username, 
+                                "Password": "bar",
+                                "Item": {
+                                    "Item": item
+                                }
+                            });
 };
 
 // create account with username and password
@@ -102,7 +107,8 @@ var createAccount = function(username, password) {
 var login = function(username, password){
     // user regular loop with constructor functions
     for (var user in MOCK_HISTORY.History){
-        if(MOCK_HISTORY.History[user].Username == username && MOCK_HISTORY.History[user].Password == password){
+        if(MOCK_HISTORY.History[user].Username == username && 
+                    MOCK_HISTORY.History[user].Password == password){
             console.log("Yes " + username + " Yes " + password);
             return true;
         } else {
