@@ -55,24 +55,24 @@ app.get('/a', function(req, res) {
 	res.json(data);
 });
 
-app.post('/b', function(req, res) {
-	// console.log(req);
-	console.log(req.body);
-	res.status(201).json(data);
-});
-
-// app.post('/b', function(req, res) {	
-//     Item.create({
-//         name: req.body.name
-//     }, function(err, item) {
-//         if (err) {
-//             return res.status(500).json({
-//                 message: 'Internal Server Error'
-//             });
-//         }
-//         res.status(201).json(item);
-//     });
+// app.post('/b', function(req, res) {
+// 	// console.log(req);
+// 	console.log(req.body.pass);
+// 	res.status(201).json(data);
 // });
+
+app.post('/b', function(req, res) {	
+    Item.create({
+        pass: req.body.pass
+    }, function(err, item) {
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+        res.status(201).json(item);
+    });
+});
 
 
 // app.post('/items', function(req, res) {
