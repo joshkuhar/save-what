@@ -14,7 +14,7 @@ $('#bttnDelete').click(function(){
     deleteFromDB(id);
     console.log("button clicked");
 });
-var id = "57f914f018c0c208d4423fdc";
+var id = "57f924b2d4960209877981de";
 var pass = 'no';
 $('#bttnPut').click(function(){
     editItem(id, pass);
@@ -143,26 +143,7 @@ $('#submit').click(function(){
     $('#price-paid').val('');
 });
 
-// create account
-$('#submit-user').click(function(){
-    var username = $('#create-username').val();
-    var password = $('#password').val();
-    createAccount(username, password);
-});
 
-// login
-$('#submit-login').click(function(){
-    var username = $('#enter-username').val();
-    var password = $('#enter-password').val();
-    login(username, password);
-    $('#enter-username').val('');
-    $('#enter-password').val('');
-    // display history
-    if(login){
-        display(MOCK_HISTORY.History[0].Item);
-    }
-    
-});
 
 
 
