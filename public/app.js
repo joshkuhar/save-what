@@ -1,26 +1,3 @@
-// test db and endpoints
-var data = {pass: 'Yes'};
-
-$('#bttnGet').click(function(){
-    getPage();
-    console.log("button clicked");
-});
-$('#bttnPost').click(function(){
-    postToDB(data);
-    $('#test').append(" " + data.pass);
-    console.log("button clicked");
-});
-$('#bttnDelete').click(function(){
-    deleteFromDB(id);
-    console.log("button clicked");
-});
-var id = "57f924b2d4960209877981de";
-var pass = 'no';
-$('#bttnPut').click(function(){
-    editItem(id, pass);
-    console.log("button clicked");
-});
-
 var getPage = function(){
     var ajax = $.ajax('/a', {
         type: 'GET',
@@ -32,7 +9,6 @@ var getPage = function(){
             $('#get').append(result[x]._id + " :" + result[x].pass + "    <br>");
         }
     });
-
 };
 
 var postToDB = function(data){
@@ -74,20 +50,6 @@ var editItem = function(id, pass){
         console.log(result);
     });
 };
-// var editItem = function(id, name) {
-//     var item = {
-//         'name': name,
-//         'id': id
-//     };
-//     var ajax = $.ajax('/items/' + id, {
-//         type: 'PUT',
-//         data: JSON.stringify(item),
-//         dataType: 'json',
-//         contentType: 'application/json'
-//     });
-//     ajax.done(this.getItems.bind(this));
-// };
-
 
 // calculates function
 var calculate = function(price, multiplyer) {
@@ -104,44 +66,26 @@ var addHistory = function(id, username, item){
                             });
 };
 
-// create account with username and password
-var createAccount = function(username, password) {
-    MOCK_HISTORY.History.push({"id": "3333333", "Username": username, 
-                                "Password": password });
-};
 
-// login function
-var login = function(username, password){
-    // user regular loop with constructor functions
-    for (var user in MOCK_HISTORY.History){
-        if(MOCK_HISTORY.History[user].Username == username && 
-                    MOCK_HISTORY.History[user].Password == password){
-            console.log("Yes " + username + " Yes " + password);
-            return true;
-        } else {
-            console.log("wrong password");
-        }
-    }
-
-};
-// display previous purchases
-var display = function(item){
-    $.each(item, function(index, value){
-        console.log(index + ': ' + value);
-        $('#previous-list').append(value + "<br>");
-    });
-}
 
 // grab info, calculate
 $('#submit').click(function(){
     var itemBought = $('#item-bought').val();
     var pricePaid = $('#price-paid').val();
-    var actualPricePaid = calculate(pricePaid, 5);
-    $("#item").text(itemBought);
-    $("#actual-price").text(actualPricePaid);
+    var newPrice = calculate(pricePaid, 5);
+    displayItem(itemBought, newPrice);
     $('#item-bought').val('');
     $('#price-paid').val('');
 });
+var calculate = function(price, multiplyer) {
+    return price * multiplyer;
+};
+var displayItem = function(item, price){
+    $('#item').append('<div>' + item + " " + price + " " + "<input type='submit' value=' save  ' class='save'></div>");
+};
+// var getItem = function(){
+//     $('.class').on('click', )
+// }
 
 
 
