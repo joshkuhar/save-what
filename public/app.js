@@ -29,7 +29,7 @@ var getPage = function(){
     ajax.done(  function  (result)    {
         console.log(result);
         for (var x = 0; x<result.length; x++){
-            $('#get').append(result[x]._id + "<br>");
+            $('#get').append(result[x]._id + " :" + result[x].pass + "    <br>");
         }
     });
 
