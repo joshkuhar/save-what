@@ -4,3 +4,5 @@ exports.DATABASE_URL = process.env.DATABASE_URL ||
                             'mongodb://localhost/app' :
                             'mongodb://localhost/app-dev');
 exports.PORT = process.env.PORT || 8080;
+
+// look up node.js enviormental variable

@@ -1,50 +1,23 @@
-
-
-var MOCK_HISTORY = {
-    "History": [
-        {
-            "id": "1111111",
-            "Username": "Bill",
-            "Password": "bar",
-            "Item": {
-                "Item": "Drinks",
-                "Price": "10"
-            }
-        },
-        {
-            "id": "2222222",
-            "Username": "John",
-            "Password": "bar",
-            "Item": {
-                "Item": "Hat",
-                "Price": "12"
-            }
-        }
-    ]
-};
-
-var getItem = MOCK_HISTORY.History[0].Item;
-
-
-
 // test db and endpoints
 var data = {pass: 'Yes'};
-
 
 $('#bttnGet').click(function(){
     getPage();
     console.log("button clicked");
 });
-// $('#bttnPost').click(function(){
-//     postToDB(data);
-//     $('#test').append(" " + data.pass);
-//     console.log("button clicked");
-// });
+$('#bttnPost').click(function(){
+    postToDB(data);
+    $('#test').append(" " + data.pass);
+    console.log("button clicked");
+});
 $('#bttnDelete').click(function(){
     deleteFromDB(id);
     console.log("button clicked");
 });
+var id = "57f914f018c0c208d4423fdc";
+var pass = 'no';
 $('#bttnPut').click(function(){
+    editItem(id, pass);
     console.log("button clicked");
 });
 
@@ -84,12 +57,33 @@ var deleteFromDB = function(id){
     ajax.done( function (result) {
         console.log(result);
     });
-}
+};
 
-// ShoppingList.prototype.deleteItem = function(id) {
+var editItem = function(id, pass){
+    var item = {
+        'pass': pass,
+        'id': id
+    };
+    var ajax = $.ajax('/b/' + id, {
+        type: 'PUT',
+        data: JSON.stringify(item),
+        dataType: 'json',
+        contentType: 'application/json'
+    });
+    ajax.done(function(result){
+        console.log(result);
+    });
+};
+// var editItem = function(id, name) {
+//     var item = {
+//         'name': name,
+//         'id': id
+//     };
 //     var ajax = $.ajax('/items/' + id, {
-//         type: 'DELETE',
-//         dataType: 'json'
+//         type: 'PUT',
+//         data: JSON.stringify(item),
+//         dataType: 'json',
+//         contentType: 'application/json'
 //     });
 //     ajax.done(this.getItems.bind(this));
 // };
