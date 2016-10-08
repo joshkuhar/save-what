@@ -76,6 +76,18 @@ app.delete('/b/:id', function(req, res) {
     });
 });
 
+app.put('/b/:id', function(req, res) {
+    console.log(req.body);
+    Item.findByIdAndUpdate(req.params.id, {
+        pass: req.body.pass
+    }, function(err) {
+        if (err) {
+            console.log(err);
+        }
+        res.status(201).end();
+    });
+});
+
 
 app.use('*', function(req, res) {
     res.status(404).json({
