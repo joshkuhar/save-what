@@ -6,30 +6,23 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<!-- test -->
-	<input type="submit" value=" GET  "id="bttnGet">
-	<input type="submit" value=" POST "id="bttnPost">
-	<input type="submit" value="DELETE"id="bttnDelete">
-	<input type="submit" value=" PUT  "id="bttnPut">
-	<div id="test"> Pass: </div>
-	<div id="get"></div>
 	<!-- home page -->
 	<div>Enter something you recently purchased in the first box. In the second box, enter the amount you paid for it. Displayed will be me how much money you would have in the future if you had invested your money instead.</div>
 	<input type="text" placeholder="What I bought" id="item-bought"><br>
-	<input type="text" placeholder="What I paid for it" id="price-paid"><br>
+	<input type="text" placeholder="What I paid for it" id="price-paid">
 	<input type="submit" id="submit">
 
 	<!-- output page -->
-	<div>What you really paid</div>
+	<div>What you really paid </div>
 	<div id="item"></div>
 	<div id="actual-price"></div>
-	<div id="username"></div>
-	<div id="history"></div><input type="submit" value=" Save " id="save">
+	
 
 	<!-- history -->
 	<div>Previous purchases</div>
 	<div id="previous-list"></div>
-
+	<input type="submit" value=" get " id="get-history">
+	<div id="history"></div>
 	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="app.js"></script>
 
