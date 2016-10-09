@@ -2,3 +2,7 @@ body {
 	margin-top: 2em;
 	margin-left: 3em;
 }
+
+li {
+	list-style: none;
+}
