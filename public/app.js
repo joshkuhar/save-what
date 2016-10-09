@@ -81,8 +81,20 @@ var calculate = function(price, multiplyer) {
     return price * multiplyer;
 };
 var displayItem = function(item, price){
-    $('#item').append('<div>' + item + " " + price + " " + "<input type='submit' value=' save  ' class='save'></div>");
+    $('#item').append('<li>' + item + " " + price + " " + "<input type='submit' value=' save  ' id='save'></li>");
 };
+// $('li').on('click',(function(){
+//     console.log("click");
+//     console.log( $(this).text() );
+// });
+
+$('#item').on('click', function(){
+    console.log("click");
+    console.log($(this).text());
+});
+
+    
+
 // var getItem = function(){
 //     $('.class').on('click', )
 // }
