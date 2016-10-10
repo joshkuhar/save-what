@@ -1,4 +1,4 @@
-var cachedItems = [];
+
 
 var getPage = function(){
     var ajax = $.ajax('/a', {
@@ -76,6 +76,7 @@ $('#submit').click(function(){
     var pricePaid = $('#price-paid').val();
     var newPrice = calculate(pricePaid, 5);
     displayItem(itemBought, newPrice);
+    cacheItem(itemBought, pricePaid);
     $('#item-bought').val('');
     $('#price-paid').val('');
 });
@@ -84,16 +85,25 @@ var calculate = function(price, multiplyer) {
 };
 var displayItem = function(item, price){
     $('#item').append('<li>' + item  + " " + price + " " + "<input type='submit' value='delete' id='delete'></li>");
-    cacheItem(item, price);
 };
+var cachedItems = [];
+var List = {};
 var cacheItem = function(item, price){
-    cachedItems.push({item, price});
+    cachedItems.push({item: item, price: price});
 };
 $('#item').on('click', function(){
     console.log(console.log(cachedItems));
 });
 $('#save').click(function(){
-    console.log(cachedItems);
+    if ($('#listName').val() === ""){
+        alert("Please enter a list name");
+        return;
+    } 
+    List.name = $('#listName').val();
+    List.items = cachedItems;
+   
+
+    
 });
 
 
