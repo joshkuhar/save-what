@@ -1,3 +1,5 @@
+var cachedItems = [];
+
 var getPage = function(){
     var ajax = $.ajax('/a', {
         type: 'GET',
@@ -81,17 +83,21 @@ var calculate = function(price, multiplyer) {
     return price * multiplyer;
 };
 var displayItem = function(item, price){
-    $('#item').append('<li>' + '<span id="1">' + item + '</span>' + " " + price + " " + "<input type='submit' value=' save  ' id='save'></li>");
+    $('#item').append('<li>' + item  + " " + price + " " + "<input type='submit' value='delete' id='delete'></li>");
+    cacheItem(item, price);
+};
+var cacheItem = function(item, price){
+    cachedItems.push({item, price});
 };
 $('#item').on('click', function(){
-    console.log($(this).text());
+    console.log(console.log(cachedItems));
+});
+$('#save').click(function(){
+    console.log(cachedItems);
 });
 
-    
 
-// var getItem = function(){
-//     $('.class').on('click', )
-// }
+    
 
 
 
