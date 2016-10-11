@@ -41,20 +41,18 @@ var Items = require('./models/item');
 app.get('/a', function(req, res) {
     // console.log(req);
     Items.find( req.query, function(err, items) {
-        console.log("I'm the first Itms " + items);
         if (err) {
             return res.status(500).json({
                 message: 'Internal Server Error'
             });
         }
-        console.log(items);
+        console.log(res.json);
         res.json(items);
     });
 });
 //
 
 app.post('/b', function(req, res) {	
-    console.log(req.body);
     Items.create({
         items: req.body.items,
         name: req.body.name
@@ -82,14 +80,14 @@ app.delete('/b/:id', function(req, res) {
 });
 
 app.put('/b/:id', function(req, res) {
-    console.log(req.body);
+    console.log(req.params.id);
     Items.findByIdAndUpdate(req.params.id, {
-        pass: req.body.pass
+        items: req.body.items, 
+        name: req.body.name
     }, function(err) {
         if (err) {
             console.log(err);
         }
-        console.log(res.body);
         res.status(201).end();
     });
 });
