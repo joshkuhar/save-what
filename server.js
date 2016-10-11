@@ -70,7 +70,7 @@ app.post('/b', function(req, res) {
 
 app.delete('/b/:id', function(req, res) {
     console.log(req);
-    Item.findByIdAndRemove(req.params.id, function(err) {
+    Items.findByIdAndRemove(req.params.id, function(err) {
         if (err) {
             console.log(err);
         }
