@@ -9,7 +9,10 @@ var postToDB = function(data){
         data: JSON.stringify(data),
         contentType: 'application/json'
     });
-    console.log('I am ' + data);
+    $('#listName').val('');
+    $('#item').empty();
+    cachedItems.length = 0;
+    List = {};
     ajax.done(  function  (result)    {
         console.log(result._id);
     }); 
@@ -46,12 +49,11 @@ var getPage = function(data){
         data: data,
         contentType: 'application/json'
     });
-    console.log(data);
     ajax.done(  function  (result)    {
-        console.log(result[0].items);
-        var eachResult = result[0].items;
+        eachResult =  result[0].items;
+        cachedItems.push(eachResult);
         for (var x = 0; x<eachResult.length; x++){
-            $('#history').append(eachResult[x].item + " " + eachResult[x].price + "<br>");
+            $('#history').append(eachResult[x].item + " " + eachResult[x].price + "<button type='submit'>Delete</button><br>");
         }
         $('#history').append('<span id="list-id">' + result[0]._id + '</span>');
 
@@ -89,7 +91,6 @@ $('#save').click(function(){
     List.name = $('#listName').val();
     List.items = cachedItems;
     postToDB(List);
-    // console.log(List);
 });
 // Retrieve previous lists
 $('#get-history').click(function(){
@@ -97,13 +98,13 @@ $('#get-history').click(function(){
     var searchName = {name: search};
     getPage(searchName);
     $('#search').val('');
-    console.log(searchName);
     $('#remove-list').show();
 });
 // Delete previous lists
 $('#remove-list').click(function(){
     var listId = $('#list-id').text();
     deleteFromDB(listId);
+    cachedItems.length = 0;
     $('#remove-list').hide();
     $('#history').empty();
 });
