@@ -1,6 +1,6 @@
-
-
-
+var cachedItems = [];
+var List = {};
+var averageTwentyReturn = 4.42;
 
 var postToDB = function(data){
     var ajax = $.ajax('/b', {
@@ -24,14 +24,14 @@ var deleteFromDB = function(id){
     });
 };
 
-var editItem = function(id, pass){
+var editItem = function(id, data){
     var item = {
-        'pass': pass,
-        'id': id
+        '_id': id,
+        'data': data
     };
     var ajax = $.ajax('/b/' + id, {
         type: 'PUT',
-        data: JSON.stringify(item),
+        data: data,
         dataType: 'json',
         contentType: 'application/json'
     });
@@ -39,45 +39,6 @@ var editItem = function(id, pass){
         console.log(result);
     });
 };
-
-// calculates function
-var calculate = function(price, multiplyer) {
-    return price * multiplyer;
-};
-
-var averageTwentyReturn = 4.42;
-
-// grab info, calculate
-$('#submit').click(function(){
-    var itemBought = $('#item-bought').val();
-    var pricePaid = $('#price-paid').val();
-    var newPrice = calculate(pricePaid, averageTwentyReturn);
-    displayItem(itemBought, newPrice);
-    cacheItem(itemBought, pricePaid);
-    $('#item-bought').val('');
-    $('#price-paid').val('');
-});
-var calculate = function(price, multiplyer) {
-    return price * multiplyer;
-};
-var displayItem = function(item, price){
-    $('#item').append('<li>' + item  + " $" + price + " " + "<input type='submit' value='delete' id='delete'></li>");
-};
-var cachedItems = [];
-var List = {};
-var cacheItem = function(item, price){
-    cachedItems.push({item: item, price: price});
-};
-$('#save').click(function(){
-    if ($('#listName').val() === ""){
-        alert("Please enter a name for your list.");
-        return;
-    } 
-    List.name = $('#listName').val();
-    List.items = cachedItems;
-    postToDB(List);
-    // console.log(List);
-});
 var getPage = function(data){
     var ajax = $.ajax('/a', {
         type: 'GET',
@@ -96,6 +57,41 @@ var getPage = function(data){
 
     });
 };
+
+// calculates function
+var calculate = function(price, multiplyer) {
+    return price * multiplyer;
+};
+var displayItem = function(item, price){
+    $('#item').append('<li>' + item  + " $" + price + " " + "<input type='submit' value='delete' id='delete'></li>");
+};
+var cacheItem = function(item, price){
+    cachedItems.push({item: item, price: price});
+};
+
+// Listeners
+// Submit to calculate
+$('#submit').click(function(){
+    var itemBought = $('#item-bought').val();
+    var pricePaid = $('#price-paid').val();
+    var newPrice = calculate(pricePaid, averageTwentyReturn);
+    displayItem(itemBought, newPrice);
+    cacheItem(itemBought, pricePaid);
+    $('#item-bought').val('');
+    $('#price-paid').val('');
+});
+// Save list with name for later retreival
+$('#save').click(function(){
+    if ($('#listName').val() === ""){
+        alert("Please enter a name for your list.");
+        return;
+    } 
+    List.name = $('#listName').val();
+    List.items = cachedItems;
+    postToDB(List);
+    // console.log(List);
+});
+// Retrieve previous lists
 $('#get-history').click(function(){
     var search = $('#search').val();
     var searchName = {name: search};
@@ -104,6 +100,7 @@ $('#get-history').click(function(){
     console.log(searchName);
     $('#remove-list').show();
 });
+// Delete previous lists
 $('#remove-list').click(function(){
     var listId = $('#list-id').text();
     deleteFromDB(listId);
