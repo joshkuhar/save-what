@@ -53,7 +53,7 @@ var getPage = function(data){
         eachResult =  result[0].items;
         cachedItems.push(eachResult);
         for (var x = 0; x<eachResult.length; x++){
-            $('#history').append(eachResult[x].item + " " + eachResult[x].price + "<button type='submit'>Delete</button><br>");
+            $('#history').append('<li>' + eachResult[x].item + " " + eachResult[x].price + "<input type='submit'value='delete'id='svd-delete'></li>");
         }
         $('#history').append('<span id="list-id">' + result[0]._id + '</span>');
 
@@ -109,6 +109,10 @@ $('#remove-list').click(function(){
     $('#history').empty();
 });
 $('#item').on('click', '#delete-current', function(){
+    $(this).parent().empty();
+});
+$('#history').on('click', '#svd-delete', function(){
+    console.log($(this).parent().text());
     $(this).parent().empty();
 });
     
