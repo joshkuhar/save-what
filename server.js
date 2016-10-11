@@ -47,7 +47,7 @@ app.get('/a', function(req, res) {
                 message: 'Internal Server Error'
             });
         }
-        console.log(items)
+        console.log(items);
         res.json(items);
     });
 });
