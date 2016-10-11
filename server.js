@@ -39,7 +39,7 @@ var Items = require('./models/item');
 // var data = {pass: 'Yes'};
 
 app.get('/a', function(req, res) {
-    console.log(req.query);
+    // console.log(req);
     Items.find( req.query, function(err, items) {
         console.log("I'm the first Itms " + items);
         if (err) {
@@ -58,6 +58,7 @@ app.post('/b', function(req, res) {
     Items.create({
         items: req.body.items,
         name: req.body.name
+        // mongoose object id
     }, function(err, item) {
         if (err) {
             return res.status(500).json({
