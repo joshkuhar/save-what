@@ -36,20 +36,22 @@ exports.runServer = runServer;
 
 var Items = require('./models/item');
 
-var data = {pass: 'Yes'};
+// var data = {pass: 'Yes'};
 
 app.get('/a', function(req, res) {
-	console.log(req);
-    Item.find(function(err, items) {
+    console.log(req.query);
+    Items.find( req.query, function(err, items) {
+        console.log("I'm the first Itms " + items);
         if (err) {
             return res.status(500).json({
                 message: 'Internal Server Error'
             });
         }
+        console.log(items)
         res.json(items);
     });
 });
-
+//
 
 app.post('/b', function(req, res) {	
     console.log(req.body);
