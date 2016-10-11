@@ -12,8 +12,6 @@ var postToDB = function(data){
     console.log('I am ' + data);
     ajax.done(  function  (result)    {
         console.log(result._id);
-        // $('#test').append('<br>' + result._id);
-        // console.log('I am result' + JSON.stringify(result));
     }); 
 };
 var deleteFromDB = function(id){
@@ -94,6 +92,8 @@ var getPage = function(data){
         for (var x = 0; x<eachResult.length; x++){
             $('#history').append(eachResult[x].item + " " + eachResult[x].price + "<br>");
         }
+        $('#history').append('<span id="list-id">' + result[0]._id + '</span>');
+
     });
 };
 $('#get-history').click(function(){
@@ -102,6 +102,13 @@ $('#get-history').click(function(){
     getPage(searchName);
     $('#search').val('');
     console.log(searchName);
+    $('#remove-list').show();
+});
+$('#remove-list').click(function(){
+    var listId = $('#list-id').text();
+    deleteFromDB(listId);
+    $('#remove-list').hide();
+    $('#history').empty();
 });
 
     
