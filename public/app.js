@@ -34,8 +34,6 @@ var deleteFromDB = function(id){
     });
 };
 
-
-
 var editItem = function(id, data){
     var ajax = $.ajax('/b/' + id, {
         type: 'PUT',
@@ -53,7 +51,7 @@ $('#history').on('click', '#svd-delete', function(){
     removeFromCache2(index);
     $(this).parent().empty();
 });
-
+// must include name, items with an array formatted as below
 var data = {"name": "bar", "items": [{item: "hat", price: "2"}]};
 
 $('#update').click(function(){
