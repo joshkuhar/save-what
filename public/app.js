@@ -1,17 +1,6 @@
 
 
-var getPage = function(){
-    var ajax = $.ajax('/a', {
-        type: 'GET',
-        dataType: 'json'
-    });
-    ajax.done(  function  (result)    {
-        console.log(result);
-        for (var x = 0; x<result.length; x++){
-            $('#get').append(result[x]._id + " :" + result[x].pass + "    <br>");
-        }
-    });
-};
+
 
 var postToDB = function(data){
     var ajax = $.ajax('/b', {
@@ -93,7 +82,29 @@ $('#save').click(function(){
     postToDB(List);
     // console.log(List);
 });
-
+var getPage = function(data){
+    var ajax = $.ajax('/a', {
+        type: 'GET',
+        dataType: 'json',
+        data: data,
+        contentType: 'application/json'
+    });
+    console.log(data);
+    ajax.done(  function  (result)    {
+        console.log(result[0].items);
+        var eachResult = result[0].items;
+        for (var x = 0; x<eachResult.length; x++){
+            $('#history').append(eachResult[x].item + " " + eachResult[x].price + "<br>");
+        }
+    });
+};
+$('#get-history').click(function(){
+    var search = $('#search').val();
+    var searchName = {name: search};
+    getPage(searchName);
+    $('#search').val('');
+    console.log(searchName);
+});
 
     
 
