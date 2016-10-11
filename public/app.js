@@ -65,7 +65,7 @@ var calculate = function(price, multiplyer) {
     return price * multiplyer;
 };
 var displayItem = function(item, price){
-    $('#item').append('<li>' + item  + " $" + price + " " + "<input type='submit' value='delete' id='delete'></li>");
+    $('#item').append('<li id="current-list">' + item  + " $" + price + " " + "<input type='submit' value='delete' id='delete-current'></li>");
 };
 var cacheItem = function(item, price){
     cachedItems.push({item: item, price: price});
@@ -108,7 +108,9 @@ $('#remove-list').click(function(){
     $('#remove-list').hide();
     $('#history').empty();
 });
-
+$('#item').on('click', '#delete-current', function(){
+    $(this).parent().empty();
+});
     
 
 
