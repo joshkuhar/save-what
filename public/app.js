@@ -1,4 +1,12 @@
+'use strict';
 var cachedItems = [];
+
+var removeFromCache = function(index){
+    cachedItems.splice(index, 1);
+};
+var removeFromCache2 = function(index){
+    cachedItems[0].splice(index, 1);
+}
 var List = {};
 var averageTwentyReturn = 4.42;
 
@@ -50,13 +58,12 @@ var getPage = function(data){
         contentType: 'application/json'
     });
     ajax.done(  function  (result)    {
-        eachResult =  result[0].items;
+        var eachResult =  result[0].items;
         cachedItems.push(eachResult);
         for (var x = 0; x<eachResult.length; x++){
-            $('#history').append('<li>' + eachResult[x].item + " " + eachResult[x].price + "<input type='submit'value='delete'id='svd-delete'></li>");
+            $('#history').append('<li><span id="'+ x + ' "></span> ' + eachResult[x].item + " " + eachResult[x].price + "<input type='submit'value='delete'id='svd-delete'></li>");
         }
         $('#history').append('<span id="list-id">' + result[0]._id + '</span>');
-
     });
 };
 
@@ -65,7 +72,7 @@ var calculate = function(price, multiplyer) {
     return price * multiplyer;
 };
 var displayItem = function(item, price){
-    $('#item').append('<li id="current-list">' + item  + " $" + price + " " + "<input type='submit' value='delete' id='delete-current'></li>");
+    $('#item').append('<li id="current-list"><span id="'+cachedItems.length+'">' + item  + "</span> $" + price + " " + "<input type='submit' value='delete' id='delete-current'></li>");
 };
 var cacheItem = function(item, price){
     cachedItems.push({item: item, price: price});
@@ -109,10 +116,13 @@ $('#remove-list').click(function(){
     $('#history').empty();
 });
 $('#item').on('click', '#delete-current', function(){
+    var index = $(this).prev().attr('id');
+    removeFromCache(index);
     $(this).parent().empty();
 });
 $('#history').on('click', '#svd-delete', function(){
-    console.log($(this).parent().text());
+    var index = $(this).prev().attr('id');
+    removeFromCache2(index);
     $(this).parent().empty();
 });
     
