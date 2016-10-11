@@ -23,8 +23,8 @@ var postToDB = function(data){
     console.log('I am ' + data);
     ajax.done(  function  (result)    {
         console.log(result._id);
-        $('#test').append('<br>' + result._id);
-        console.log('I am result' + JSON.stringify(result));
+        // $('#test').append('<br>' + result._id);
+        // console.log('I am result' + JSON.stringify(result));
     }); 
 };
 var deleteFromDB = function(id){
@@ -57,18 +57,6 @@ var editItem = function(id, pass){
 var calculate = function(price, multiplyer) {
     return price * multiplyer;
 };
-// pushes information to mock database
-var addHistory = function(id, username, item){
-    MOCK_HISTORY.History.push({"id": id, 
-                                "Username": username, 
-                                "Password": "bar",
-                                "Item": {
-                                    "Item": item
-                                }
-                            });
-};
-
-
 
 // grab info, calculate
 $('#submit').click(function(){
@@ -91,19 +79,19 @@ var List = {};
 var cacheItem = function(item, price){
     cachedItems.push({item: item, price: price});
 };
-$('#item').on('click', function(){
-    console.log(console.log(cachedItems));
-});
+// var removeItem = function(item);
+// $('#item').on('click', function(){
+//     console.log(console.log(cachedItems));
+// });
 $('#save').click(function(){
     if ($('#listName').val() === ""){
-        alert("Please enter a list name");
+        alert("Please enter a name for your list.");
         return;
     } 
     List.name = $('#listName').val();
     List.items = cachedItems;
-   
-
-    
+    postToDB(List);
+    // console.log(List);
 });
 
 
