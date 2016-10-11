@@ -34,7 +34,7 @@ if (require.main === module) {
 exports.app = app;
 exports.runServer = runServer;
 
-var Item = require('./models/item');
+var Items = require('./models/item');
 
 var data = {pass: 'Yes'};
 
@@ -52,8 +52,10 @@ app.get('/a', function(req, res) {
 
 
 app.post('/b', function(req, res) {	
-    Item.create({
-        pass: req.body.pass
+    console.log(req.body);
+    Items.create({
+        items: req.body.items,
+        name: req.body.name
     }, function(err, item) {
         if (err) {
             return res.status(500).json({
