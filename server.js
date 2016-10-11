@@ -82,7 +82,7 @@ app.delete('/b/:id', function(req, res) {
 
 app.put('/b/:id', function(req, res) {
     console.log(req.body);
-    Item.findByIdAndUpdate(req.params.id, {
+    Items.findByIdAndUpdate(req.params.id, {
         pass: req.body.pass
     }, function(err) {
         if (err) {
