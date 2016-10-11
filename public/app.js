@@ -1,15 +1,14 @@
 'use strict';
 var cachedItems = [];
-
 var removeFromCache = function(index){
     cachedItems.splice(index, 1);
 };
+// after array is returned from db
 var removeFromCache2 = function(index){
     cachedItems[0].splice(index, 1);
 }
 var List = {};
 var averageTwentyReturn = 4.42;
-
 var postToDB = function(data){
     var ajax = $.ajax('/b', {
         type: 'POST',
@@ -35,21 +34,47 @@ var deleteFromDB = function(id){
     });
 };
 
+
+
 var editItem = function(id, data){
-    var item = {
-        '_id': id,
-        'data': data
-    };
     var ajax = $.ajax('/b/' + id, {
         type: 'PUT',
-        data: data,
+        data: JSON.stringify(data),
         dataType: 'json',
         contentType: 'application/json'
-    });
+    }); 
+
     ajax.done(function(result){
         console.log(result);
     });
 };
+$('#history').on('click', '#svd-delete', function(){
+    var index = $(this).prev().attr('id');
+    removeFromCache2(index);
+    $(this).parent().empty();
+});
+
+var data = {"name": "bar", "items": [{item: "hat", price: "2"}]};
+
+$('#update').click(function(){
+    console.log("I was clicked");
+    var listId = $('#list-id').text();
+    console.log(listId);
+    editItem(listId, data);
+    // console.log(listId);
+    // console.log(cachedItems[0]);
+    // editItem(listId, cachedItems);
+});
+
+
+
+
+
+
+
+
+
+
 var getPage = function(data){
     var ajax = $.ajax('/a', {
         type: 'GET',
@@ -58,6 +83,7 @@ var getPage = function(data){
         contentType: 'application/json'
     });
     ajax.done(  function  (result)    {
+        console.log(result);
         var eachResult =  result[0].items;
         cachedItems.push(eachResult);
         for (var x = 0; x<eachResult.length; x++){
@@ -120,12 +146,6 @@ $('#item').on('click', '#delete-current', function(){
     removeFromCache(index);
     $(this).parent().empty();
 });
-$('#history').on('click', '#svd-delete', function(){
-    var index = $(this).prev().attr('id');
-    removeFromCache2(index);
-    $(this).parent().empty();
-});
-    
 
 
 
