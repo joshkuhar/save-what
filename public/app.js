@@ -59,7 +59,9 @@ $('#update').click(function(){
     console.log("I was clicked");
     var listId = $('#list-id').text();
     console.log(listId);
-    editItem(listId, data);
+    List.items = cachedItems[0];
+    editItem(listId, List);
+    List = {};
     // console.log(listId);
     // console.log(cachedItems[0]);
     // editItem(listId, cachedItems);
@@ -82,8 +84,9 @@ var getPage = function(data){
         contentType: 'application/json'
     });
     ajax.done(  function  (result)    {
-        console.log(result);
-        var eachResult =  result[0].items;
+        List.name = result[0].name;
+        console.log(List);
+        var eachResult = result[0].items;
         cachedItems.push(eachResult);
         for (var x = 0; x<eachResult.length; x++){
             $('#history').append('<li><span id="'+ x + ' "></span> ' + eachResult[x].item + " " + eachResult[x].price + "<input type='submit'value='delete'id='svd-delete'></li>");
