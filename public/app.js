@@ -1,8 +1,19 @@
 'use strict';
+
+//model
 var idForCachedItems = 0;
 var cachedItems = [];
 var List = {};
 var averageTwentyReturn = 4.42;
+
+
+//controller
+var calculate = function(price, multiplyer) {
+    return price * multiplyer;
+};
+var cacheItem = function(item, price){
+    cachedItems.push( { id: idForCachedItems, items: {item: item, price: price}  }  );
+};
 var removeFromCache = function(id){
     for (var x = 0; x < cachedItems.length; x++) {
         if (cachedItems[x].id == id) {
@@ -17,6 +28,32 @@ var removeIdFromCachedItems = function(){
     }
     return exportableCachedItems;
 }
+// ENDPOINTS
+// GET endpoint
+var getPage = function(data){
+    var ajax = $.ajax('/a', {
+        type: 'GET',
+        dataType: 'json',
+        data: data,
+        contentType: 'application/json'
+    });
+    ajax.done(  function  (result)    {
+        List.name = result[0].name;
+        var eachResult = result[0].items;
+        console.log(eachResult);
+        for (var x = 0; x<eachResult.length; x++){
+            console.log(eachResult[x]);
+            cachedItems.push( { id: x, items: eachResult[x] });
+            // $('#saved-list').append('<li><span id="'+ idForCachedItems + ' "></span> ' + eachResult[x].item + " " + eachResult[x].price + "<input type='submit'value='delete'id='delete-saved-item'></li>");
+
+            showSavedListByName(x, eachResult);
+            idForCachedItems++;
+        }
+        store_id(result[0]._id);
+    });
+};
+
+// POST endpoint
 var postToDB = function(data){
     var ajax = $.ajax('/b', {
         type: 'POST',
@@ -24,26 +61,14 @@ var postToDB = function(data){
         data: JSON.stringify(data),
         contentType: 'application/json'
     });
-
-    ajax.done(  function  (result)    {
-        console.log(result._id);
-        $('#listName').val('');
-        $('#item').empty();
+    ajax.done(function(result){
+        clearElementAfterPost();
         cachedItems.length = 0;
         List = {};
         idForCachedItems = 0;
     }); 
 };
-var deleteFromDB = function(id){
-    var ajax = $.ajax('/b/' + id, {
-        type: 'DELETE',
-        dataType: 'json'
-    });
-    ajax.done( function (result) {
-        console.log(result);
-    });
-};
-
+// PUT endpoint
 var editItem = function(id, data){
     var ajax = $.ajax('/b/' + id, {
         type: 'PUT',
@@ -56,76 +81,36 @@ var editItem = function(id, data){
         console.log(result);
     });
 };
-$('#history').on('click', '#svd-delete', function(){
-    var index = $(this).prev().attr('id');
-    removeFromCache(index);
-    $(this).parent().empty();
-});
-// must include name, items with an array formatted as below
-// var data = {"name": "bar", "items": [{item: "hat", price: "2"}]};
-$('#update').click(function(){
-    var listId = $('#list-id').text();
-    List.items = cachedItems;
-    editItem(listId, List);
-    List = {};
-});
 
-
-
-
-
-
-
-
-
-
-var getPage = function(data){
-    var ajax = $.ajax('/a', {
-        type: 'GET',
-        dataType: 'json',
-        data: data,
-        contentType: 'application/json'
+// DELETE endpoint
+var deleteFromDB = function(id){
+    var ajax = $.ajax('/b/' + id, {
+        type: 'DELETE',
+        dataType: 'json'
     });
-    ajax.done(  function  (result)    {
-        List.name = result[0].name;
-        var eachResult = result[0].items;
-        for (var x = 0; x<eachResult.length; x++){
-            cachedItems.push( { id: x, items: eachResult[x] });
-            $('#history').append('<li><span id="'+ idForCachedItems + ' "></span> ' + eachResult[x].item + " " + eachResult[x].price + "<input type='submit'value='delete'id='svd-delete'></li>");
-            idForCachedItems++;
-            // cachedItems.push( eachResult[x] ) ;
-        }
-        // cachedItems.push(eachResult);
-        // for (var x = 0; x<eachResult.length; x++){
-        //     $('#history').append('<li><span id="'+ idForCachedItems + ' "></span> ' + eachResult[x].item + " " + eachResult[x].price + "<input type='submit'value='delete'id='svd-delete'></li>");
-        //     idForCachedItems++;
-        // }
-        $('#history').append('<span id="list-id">' + result[0]._id + '</span>');
+    ajax.done( function (result) {
+        console.log(result);
     });
-};
-
-// calculates function
-var calculate = function(price, multiplyer) {
-    return price * multiplyer;
-};
-var displayItem = function(item, price){
-    $('#item').append('<li id="current-list"><span id="'+idForCachedItems+'">' + item  + "</span> $" + price + " " + "<input type='submit' value='delete' id='delete-current'></li>");
-};
-var cacheItem = function(item, price){
-    cachedItems.push( { id: idForCachedItems, items: {item: item, price: price}  }  );
 };
 
 // Listeners
-// Submit to calculate
-$('#submit').click(function(){
-    var itemBought = $('#item-bought').val();
-    var pricePaid = $('#price-paid').val();
-    var newPrice = calculate(pricePaid, averageTwentyReturn);
-    displayItem(itemBought, newPrice);
-    cacheItem(itemBought, pricePaid);
+// Calculate item and add to list
+$('#add-to-list').click(function(){ 
+    var item = $('#item-bought').val();
+    var price = $('#price-paid').val();
+    var newPrice = calculate(price, averageTwentyReturn);
+    displayItem(item, newPrice);
+    cacheItem(item, newPrice);
     $('#item-bought').val('');
     $('#price-paid').val('');
+    $('#item-bought').focus();
     idForCachedItems++;
+});
+// Delete item from current list
+$('#item').on('click', '#delete-current', function(){
+    var id = $(this).prev().attr('id');
+    removeFromCache(id);
+    $(this).parent().empty();
 });
 // Save list with name for later retreival
 $('#save').click(function(){
@@ -137,13 +122,27 @@ $('#save').click(function(){
     List.items = removeIdFromCachedItems();
     postToDB(List);
 });
-// Retrieve previous lists
+// Retrieve previous lists with search name
 $('#get-history').click(function(){
+    console.log('clicked');
     var search = $('#search').val();
     var searchName = {name: search};
     getPage(searchName);
     $('#search').val('');
     $('#remove-list').show();
+});
+// Delete previous lists item by item
+$('#saved-list').on('click', '#delete-saved-item', function(){
+    var index = $(this).prev().attr('id');
+    removeFromCache(index);
+    $(this).parent().empty();
+});
+//Save updated list to data base
+$('#save-updated-list').click(function(){
+    var listId = $('#list-id').text();
+    List.items = removeIdFromCachedItems();
+    editItem(listId, List);
+    List = {};
 });
 // Delete previous lists
 $('#remove-list').click(function(){
@@ -153,15 +152,22 @@ $('#remove-list').click(function(){
     $('#remove-list').hide();
     $('#history').empty();
 });
-$('#item').on('click', '#delete-current', function(){
-    var id = $(this).prev().attr('id');
-    removeFromCache(id);
-    $(this).parent().empty();
-});
 
 
-
-
+//views
+var showSavedListByName = function(index, value){
+    $('#saved-list').append('<li><span id="'+ idForCachedItems + ' "></span> ' + value[index].item + " " + value[index].price + "<input type='submit'value='delete'id='delete-saved-item'></li>");
+};
+var store_id = function(id){
+    $('#saved-list').append('<span id="list-id">' + id + '</span>');
+};
+var clearElementAfterPost = function(){
+        $('#listName').val('');
+        $('#item').empty();
+};
+var displayItem = function(item, price){
+    $('#item').append('<li id="current-list"><span id="'+idForCachedItems+'">' + item  + "</span> $" + price + " " + "<input type='submit' value='delete' id='delete-current'></li>");
+};
 
 
 
