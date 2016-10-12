@@ -6,7 +6,7 @@ body {
 li {
 	list-style: none;
 }
-#remove-list{
+#remove-list, #clear{
 	display: none;
 }
 #list-id{
