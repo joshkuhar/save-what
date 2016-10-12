@@ -7,6 +7,7 @@ var removeFromCache = function(index){
 var removeFromCache2 = function(index){
     cachedItems[0].splice(index, 1);
 }
+// List must be sent to the server and not just the array
 var List = {};
 var averageTwentyReturn = 4.42;
 var postToDB = function(data){
