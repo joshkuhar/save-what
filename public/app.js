@@ -148,10 +148,18 @@ $('#saved-list').on('click', '#delete-saved-item', function(){
     removeFromCache(index);
     $(this).parent().empty();
 });
+// Edit item
+$('#saved-list').on('click', '#edit', (function(){
+    $('span').prev().attr('contenteditable','true');
+        }
+    )
+);
 //Save updated list to data base
 $('#save-updated-list').click(function(){
     var listId = $('#list-id').text();
+    console.log(listId);
     List.items = removeIdFromCachedItems();
+    console.log(List.items);
     editItem(listId, List);
     List = {};
 });
@@ -177,7 +185,7 @@ var clearViews = function(){
     $('#saved-list').empty();
 };
 var showSavedListByName = function(index, value){
-    $('#saved-list').append('<li><span id="'+ idForCachedItems + ' "></span> ' + value[index].item + " $" + value[index].price + "<input type='submit'value='delete'id='delete-saved-item'></li>");
+    $('#saved-list').append('<li><span id="'+ idForCachedItems + '"> '  + value[index].item +    '</span> $' + value[index].price + "<input type='submit'value='edit'id='edit'><input type='submit'value='delete'id='delete-saved-item'></li>");
 };
 var store_id = function(id){
     $('#saved-list').append('<span id="list-id">' + id + '</span>');
@@ -189,6 +197,7 @@ var clearElementAfterPost = function(){
 var displayItem = function(item, price){
     $('#item').append('<li id="current-list"><span id="'+idForCachedItems+'">' + item  + "</span> $" + price + " " + "<input type='submit' value='delete' id='delete-current'></li>");
 };
+
 
 
 
