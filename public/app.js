@@ -150,7 +150,7 @@ $('#remove-list').click(function(){
     deleteFromDB(listId);
     cachedItems.length = 0;
     $('#remove-list').hide();
-    $('#history').empty();
+    $('#saved-list').empty();
 });
 
 
