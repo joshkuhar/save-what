@@ -48,10 +48,7 @@ var getPage = function(data){
         var eachResult = result[0].items;
         console.log(eachResult);
         for (var x = 0; x<eachResult.length; x++){
-            console.log(eachResult[x]);
             cachedItems.push( { id: x, items: eachResult[x] });
-            // $('#saved-list').append('<li><span id="'+ idForCachedItems + ' "></span> ' + eachResult[x].item + " " + eachResult[x].price + "<input type='submit'value='delete'id='delete-saved-item'></li>");
-
             showSavedListByName(x, eachResult);
             idForCachedItems++;
         }
