@@ -10,7 +10,7 @@
 	<div>Enter something you recently purchased in the first box. In the second box, enter the amount you paid for it. Displayed will be me how much money you would have in the future if you had invested your money instead.</div>
 	<input type="text" placeholder="What I bought" id="item-bought"><br>
 	<input type="text" placeholder="What I paid for it" id="price-paid">
-	<input type="submit" id="submit">
+	<input type="submit" id="add-to-list">
 
 	<!-- output page -->
 	<div>What you really paid </div>
@@ -23,9 +23,9 @@
 	<!-- history -->
 	<div>Previous purchases </div>
 	<input type="text" placeholder="search name" id="search">
-	<input type="submit" value=" get " id="get-history"><input type="submit" value="update" id="update">
+	<input type="submit" value=" get " id="get-history"><input type="submit" value="update" id="save-updated-list">
 	
-	<div id="history"></div>
+	<div id="saved-list"></div>
 	<input type="submit" value="delete list" id="remove-list">
 	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="app.js"></script>
