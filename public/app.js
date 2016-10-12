@@ -49,17 +49,17 @@ var editItem = function(id, data){
 };
 $('#history').on('click', '#svd-delete', function(){
     var index = $(this).prev().attr('id');
-    removeFromCache2(index);
+    removeFromCache(index);
     $(this).parent().empty();
 });
 // must include name, items with an array formatted as below
-var data = {"name": "bar", "items": [{item: "hat", price: "2"}]};
+// var data = {"name": "bar", "items": [{item: "hat", price: "2"}]};
 
 $('#update').click(function(){
     console.log("I was clicked");
     var listId = $('#list-id').text();
     console.log(listId);
-    List.items = cachedItems[0];
+    List.items = cachedItems;
     editItem(listId, List);
     List = {};
     // console.log(listId);
@@ -87,7 +87,11 @@ var getPage = function(data){
         List.name = result[0].name;
         console.log(List);
         var eachResult = result[0].items;
-        cachedItems.push(eachResult);
+        console.log(eachResult);
+        for (var x = 0; x<eachResult.length; x++){
+            cachedItems.push(eachResult[x]);
+        }
+        // cachedItems.push(eachResult);
         for (var x = 0; x<eachResult.length; x++){
             $('#history').append('<li><span id="'+ x + ' "></span> ' + eachResult[x].item + " " + eachResult[x].price + "<input type='submit'value='delete'id='svd-delete'></li>");
         }
