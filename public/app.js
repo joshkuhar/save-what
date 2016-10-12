@@ -5,6 +5,7 @@ var idForCachedItems = 0;
 var cachedItems = [];
 var List = {};
 var averageTwentyReturn = 4.42;
+var existingList = false;
 
 
 //controller
@@ -124,12 +125,17 @@ $('#save').click(function(){
 });
 // Retrieve previous lists with search name
 $('#get-history').click(function(){
-    console.log('clicked');
+    if (existingList == true){
+        alert("Please clear current list before viewing a new one.")
+        return;
+    }
     var search = $('#search').val();
     var searchName = {name: search};
     getPage(searchName);
     $('#search').val('');
     $('#remove-list').show();
+    $('#clear').show();
+    existingList = true;
 });
 // Delete previous lists item by item
 $('#saved-list').on('click', '#delete-saved-item', function(){
@@ -144,6 +150,17 @@ $('#save-updated-list').click(function(){
     editItem(listId, List);
     List = {};
 });
+// Clear previous list
+$('#clear').click(function(){
+    $('#remove-list').hide();
+    $('#clear').hide();
+    $('#saved-list').empty();
+    $('#list-id').empty();
+    cachedItems.length = 0;
+    List = {};
+    existingList = false;
+});
+
 // Delete previous lists
 $('#remove-list').click(function(){
     var listId = $('#list-id').text();
@@ -151,12 +168,13 @@ $('#remove-list').click(function(){
     cachedItems.length = 0;
     $('#remove-list').hide();
     $('#saved-list').empty();
+    existingList = false;
 });
 
 
 //views
 var showSavedListByName = function(index, value){
-    $('#saved-list').append('<li><span id="'+ idForCachedItems + ' "></span> ' + value[index].item + " " + value[index].price + "<input type='submit'value='delete'id='delete-saved-item'></li>");
+    $('#saved-list').append('<li><span id="'+ idForCachedItems + ' "></span> ' + value[index].item + " $" + value[index].price + "<input type='submit'value='delete'id='delete-saved-item'></li>");
 };
 var store_id = function(id){
     $('#saved-list').append('<span id="list-id">' + id + '</span>');
