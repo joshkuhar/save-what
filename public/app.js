@@ -6,6 +6,11 @@ var cachedItems = [];
 var List = {};
 var averageTwentyReturn = 4.42;
 var existingList = false;
+var clearModels = function(){
+    cachedItems.length = 0;
+    List = {};
+    existingList = false;
+};
 
 
 //controller
@@ -152,27 +157,25 @@ $('#save-updated-list').click(function(){
 });
 // Clear previous list
 $('#clear').click(function(){
-    $('#remove-list').hide();
-    $('#clear').hide();
-    $('#saved-list').empty();
-    $('#list-id').empty();
-    cachedItems.length = 0;
-    List = {};
-    existingList = false;
+    clearViews();
+    clearModels();
 });
 
 // Delete previous lists
 $('#remove-list').click(function(){
     var listId = $('#list-id').text();
     deleteFromDB(listId);
-    cachedItems.length = 0;
-    $('#remove-list').hide();
-    $('#saved-list').empty();
-    existingList = false;
+    clearViews();
+    clearModels();
 });
 
 
 //views
+var clearViews = function(){
+    $('#remove-list').hide();
+    $('#clear').hide();
+    $('#saved-list').empty();
+};
 var showSavedListByName = function(index, value){
     $('#saved-list').append('<li><span id="'+ idForCachedItems + ' "></span> ' + value[index].item + " $" + value[index].price + "<input type='submit'value='delete'id='delete-saved-item'></li>");
 };
