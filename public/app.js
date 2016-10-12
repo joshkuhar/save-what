@@ -97,10 +97,10 @@ var deleteFromDB = function(id){
 // Calculate item and add to list
 $('#add-to-list').click(function(){ 
     var item = $('#item-bought').val();
-    var price = $('#price-paid').val();
+    var price = parseInt($('#price-paid').val());
     var newPrice = calculate(price, averageTwentyReturn);
-    displayItem(item, newPrice);
-    cacheItem(item, newPrice);
+    displayItem(item, newPrice.toFixed(2));
+    cacheItem(item, newPrice.toFixed(2));
     $('#item-bought').val('');
     $('#price-paid').val('');
     $('#item-bought').focus();
