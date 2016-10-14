@@ -2,6 +2,7 @@
 	border: solid red .05em;
 }
 
+
 body {
 	font-size: 100%;
 	margin-top: 3em;
@@ -10,6 +11,11 @@ body {
 #top, #middle, #bottom {
 	width: 30em;
 	margin: auto;
+}
+#search-container {
+	text-align: right;
+	margin:auto;
+	width: 30em;
 }
 
 li {
@@ -22,4 +28,16 @@ li {
 #list-id{
 	display: none;
 }
+.first, .second {
+	display: inline-block;
+	width: 7em;
+	text-align: center;
+}
 
+#list-name{
+	display: block;
+    text-align: center;
+    font-style: oblique;
+    font-size: 1.2em;
+    margin-right: 4em;
+}
