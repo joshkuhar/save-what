@@ -1,12 +1,21 @@
+* {
+	border: solid red .05em;
+}
+
 body {
 	font-size: 100%;
 	margin-top: 3em;
 	margin-left: 4em;
 }
+#top, #middle, #bottom {
+	width: 30em;
+	margin: auto;
+}
 
 li {
 	list-style: none;
 }
+
 #remove-list, #clear{
 	display: none;
 }
