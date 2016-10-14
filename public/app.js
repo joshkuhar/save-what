@@ -45,6 +45,7 @@ var getPage = function(data){
     });
     ajax.done(  function  (result)    {
         List.name = result[0].name;
+        displayListName(result[0].name);
         var eachResult = result[0].items;
         console.log(eachResult);
         for (var x = 0; x<eachResult.length; x++){
@@ -65,7 +66,6 @@ var postToDB = function(data){
         contentType: 'application/json'
     });
     ajax.done(function(result){
-        clearElementAfterPost();
         cachedItems.length = 0;
         List = {};
         idForCachedItems = 0;
@@ -110,8 +110,8 @@ $('#add-to-list').click(function(){
     $('#item-bought').focus();
     idForCachedItems++;
 });
-// Delete item from current list
-$('#item').on('click', '#delete-current', function(){
+// Delete item  list
+$('#item').on('click', '#delete-item', function(){
     var id = $(this).parent().attr('id');
     removeFromCache(id);
     $(this).parent().remove();
@@ -125,6 +125,8 @@ $('#save').click(function(){
     List.name = $('#listName').val();
     List.items = removeIdFromCachedItems();
     postToDB(List);
+    displayListName(List.name);
+    $(this).prop("disabled",true);
 });
 // Retrieve previous lists with search name
 $('#get-history').click(function(){
@@ -138,13 +140,8 @@ $('#get-history').click(function(){
     $('#search').val('');
     $('#remove-list').show();
     $('#clear').show();
+    $('#save').prop("disabled",true);
     existingList = true;
-});
-// Delete previous lists item by item
-$('#item').on('click', '#delete-saved-item', function(){
-    var index = $(this).prev().attr('id');
-    removeFromCache(index);
-    $(this).parent().empty();
 });
 //Save updated list to data base
 $('#save-updated-list').click(function(){
@@ -176,7 +173,7 @@ var clearViews = function(){
     $('#item').empty();
 };
 var showSavedListByName = function(index, value){
-    $('#item').append('<li><span id="'+ idForCachedItems + '"> '  + value[index].item +    '</span> $' + value[index].price + "<input type='submit'value='delete'id='delete-saved-item'></li>");
+    $('#item').append('<li id='+idForCachedItems+'><span class="first"> '  + value[index].item +    '</span> <span class="second">' + value[index].price + "</span><input type='submit'value='delete'id='delete-item'></li>");
 };
 var store_id = function(id){
     $('#item').append('<span id="list-id">' + id + '</span>');
@@ -186,7 +183,10 @@ var clearElementAfterPost = function(){
         $('#item').empty();
 };
 var displayItem = function(item, price){
-    $('#item').append('<li id='+idForCachedItems+'><span>' + item  + "</span> $" + price + " " + "<input type='submit' value='delete' id='delete-current'></li>");
+    $('#item').append('<li id='+idForCachedItems+'><span class="first">' + item  + '</span> <span class="second">' + price + '</span><input type="submit" value="delete" id="delete-current"></li>');
+};
+var displayListName = function(name) {
+    $('#item').prepend('<span id="list-name">'+name+'</span>');
 };
 
 
