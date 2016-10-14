@@ -81,6 +81,7 @@ app.delete('/b/:id', function(req, res) {
 
 app.put('/b/:id', function(req, res) {
     console.log(req.params.id);
+    console.log(req.body);
     Items.findByIdAndUpdate(req.params.id, {
         items: req.body.items, 
         name: req.body.name
