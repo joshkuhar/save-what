@@ -7,40 +7,37 @@
 </head>
 <body>
 	<!-- home page -->
-	
+	<div id="search-container"> 
+				<input type="text" placeholder="search name" id="search">
+				<input type="submit" value=" get " id="get-history">
+	</div><br>
 	<div id = 'top'>
-		<div>Enter something you recently purchased in the first box. In the second box, enter the amount you paid for it. Displayed will be me how much money you would have in the future if you had invested your money instead.
-		</div>
+
+		<div>Enter something you recently purchased in the first box. In the second box, enter the amount you paid for it. Displayed will be me how much money you would have in the future if you had invested your money instead. 
+			
+		</div><br>
 		<input type="text" placeholder="What I bought" id="item-bought">
 		<input type="text" placeholder="What I paid for it" id="price-paid">
-		<input type="submit" id="add-to-list">
+		<input type="submit" value=" Add " id="add-to-list"><br>
+		
 	</div>
-
+	
 
 	<!-- output page -->
 	<div id = 'middle'>
 		<div>What you really paid </div>
 		<div id="item"></div>
-		<input type='text' placeholder="Save list as"id="listName">
-		<input type='submit' value="Save" id="save">
-	</div>
 
-	
-
-	<!-- history -->
-	<div id = 'bottom'>
-		
-		<div>Previous purchases </div>
-		<input type="text" placeholder="search name" id="search">
-		<input type="submit" value=" get " id="get-history"><input type="submit" value="update" id="save-updated-list">
-	
-		<div id="saved-list"></div>
 		<input type="submit" value=" clear " id="clear">
 		<input type="submit" value="delete list" id="remove-list">
-
-
-
-
+	</div>
+	<!-- history -->
+	<div id = 'bottom'>
+	<input type='text' placeholder="Save list as"id="listName">
+		<input type='submit' value="Save" id="save"><input type="submit" value="Update" id="save-updated-list">
+		
+		
+		
 
 	</div>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
