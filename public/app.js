@@ -108,6 +108,8 @@ $('#add-to-list').click(function(){
     $('#item-bought').val('');
     $('#price-paid').val('');
     $('#item-bought').focus();
+    showClearAndUpdate();
+    showSaveAndUpdate();
     idForCachedItems++;
 });
 // Delete item  list
@@ -126,6 +128,7 @@ $('#save').click(function(){
     List.items = removeIdFromCachedItems();
     postToDB(List);
     displayListName(List.name);
+    $('#listName').val("");
     $(this).prop("disabled",true);
 });
 // Retrieve previous lists with search name
@@ -138,8 +141,8 @@ $('#get-history').click(function(){
     var searchName = {name: search};
     getPage(searchName);
     $('#search').val('');
-    $('#remove-list').show();
-    $('#clear').show();
+    showClearAndUpdate();
+    showSaveAndUpdate();
     $('#save').prop("disabled",true);
     existingList = true;
 });
@@ -171,6 +174,7 @@ var clearViews = function(){
     $('#remove-list').hide();
     $('#clear').hide();
     $('#item').empty();
+    $('#name').empty();
 };
 var showSavedListByName = function(index, value){
     $('#item').append('<li id='+idForCachedItems+'><span class="first"> '  + value[index].item +    '</span> <span class="second">$' + value[index].price + " </span><input type='submit'value='delete'id='delete-item'></li>");
@@ -186,7 +190,14 @@ var displayItem = function(item, price){
     $('#item').append('<li id='+idForCachedItems+'><span class="first">' + item  + '</span> <span class="second">$' + price + ' </span><input type="submit" value="delete" id="delete-current"></li>');
 };
 var displayListName = function(name) {
-    $('#item').prepend('<span id="list-name">List Name: '+name+'</span>');
+    $('#name').prepend('<span id="list-name">List Name: '+name+'</span>');
+};
+var showClearAndUpdate = function(){
+    $('#remove-list').show();
+    $('#clear').show();
+};
+var showSaveAndUpdate = function(){
+    $('#bottom').show();
 };
 
 
@@ -194,7 +205,7 @@ var displayListName = function(name) {
 
 
 
-
+    
 
 
 
