@@ -173,7 +173,7 @@ var clearViews = function(){
     $('#item').empty();
 };
 var showSavedListByName = function(index, value){
-    $('#item').append('<li id='+idForCachedItems+'><span class="first"> '  + value[index].item +    '</span> <span class="second">' + value[index].price + "</span><input type='submit'value='delete'id='delete-item'></li>");
+    $('#item').append('<li id='+idForCachedItems+'><span class="first"> '  + value[index].item +    '</span> <span class="second">$' + value[index].price + " </span><input type='submit'value='delete'id='delete-item'></li>");
 };
 var store_id = function(id){
     $('#item').append('<span id="list-id">' + id + '</span>');
@@ -183,10 +183,10 @@ var clearElementAfterPost = function(){
         $('#item').empty();
 };
 var displayItem = function(item, price){
-    $('#item').append('<li id='+idForCachedItems+'><span class="first">' + item  + '</span> <span class="second">' + price + '</span><input type="submit" value="delete" id="delete-current"></li>');
+    $('#item').append('<li id='+idForCachedItems+'><span class="first">' + item  + '</span> <span class="second">$' + price + ' </span><input type="submit" value="delete" id="delete-current"></li>');
 };
 var displayListName = function(name) {
-    $('#item').prepend('<span id="list-name">'+name+'</span>');
+    $('#item').prepend('<span id="list-name">List Name: '+name+'</span>');
 };
 
 
