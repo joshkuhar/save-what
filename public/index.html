@@ -8,18 +8,23 @@
 <body>
 	<!-- home page -->
 	<h1>VALUE CALCULATOR</h1>
-	<div id="search-container"> 
-				
-				<input type="submit" value=" get " id="get-history"><input type="text" placeholder="get saved list name" id="search">
-	</div><br>
+	
 	<div id = 'top'>
+
 
 		<div>Enter something you recently purchased in the first box. In the second box, enter the amount you paid for it. Displayed will be me how much money you would have in the future if you had invested your money instead. 
 			
 		</div><br>
+				<div class="title">Look up a previous list</div>
+				<div id="search-container"> 
+				<input type="text" placeholder="get saved list name" id="search">
+				<input type="submit" value=" get " id="get-history">
+				</div><br>
+				<div id="name"></div><br>
+		<div class="title">Enter information below</div>
 		<input type="text" placeholder="What I bought" id="item-bought">
 		<input type="text" placeholder="What I paid for it" id="price-paid">
-		<input type="submit" value=" Add " id="add-to-list"><br>
+		<input type="submit" value=" Add " id="add-to-list">
 		
 	</div>
 	
