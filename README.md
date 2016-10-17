@@ -1,29 +1,34 @@
-A First Level Header
+VALUE CALCULATOR	
 ====================
 
-A Second Level Header
+Overview	
+---------------------
+This is a single page app that estimates the future value of money. The values are only estimates and are displayed to encourage the user to think about their spending habits in a more, fiscally responsible way.
+
+
+API
 ---------------------
 
-Now is the time for all good men to come to
-the aid of their country. This is just a
-regular paragraph.
+This version currently uses four endpoints.
 
-The quick brown fox jumped over the lazy
-dog's back.
 
-### Header 3
+### Create/Post
+The user enters an item they recently purchased and the price they paid for it. They click submit and the item is added to a list with the amount of money they would have in the future if they hadn't purchased the item.
 
-> This is a blockquote.
-> 
-> This is the second paragraph in the blockquote.
->
-> ## This is an H2 in a blockquote
+They can also save the list and return to it later.
 
-Some of these words *are emphasized*.
-Some of these words _are emphasized also_.
 
-Use two asterisks for **strong emphasis**.
-Or, if you prefer, __use two underscores instead__.
+### Read/Get
+The user can enter the name of saved list and retrieve it for editing.
+
+### Update/Put
+The user can remove entire lines and add new items to the list.
+
+### Delete
+The user can remove the entire list by clicking the delete button.
+
+
+
 
 
 IMAGES
