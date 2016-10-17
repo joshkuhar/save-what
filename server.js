@@ -2,6 +2,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+// var http = require('http');
+// console.log(http);
+
 var config = require('./config');
 
 var app = express();
@@ -67,20 +70,16 @@ app.post('/b', function(req, res) {
 });
 
 app.delete('/b/:id', function(req, res) {
-    console.log(req);
     Items.findByIdAndRemove(req.params.id, function(err) {
         if (err) {
             console.log(err);
         }
-        // console.log(res);
         res.status(204).end();
 
     });
 });
 
 app.put('/b/:id', function(req, res) {
-    console.log(req.params.id);
-    console.log(req.body);
     Items.findByIdAndUpdate(req.params.id, {
         items: req.body.items, 
         name: req.body.name
