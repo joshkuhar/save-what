@@ -39,13 +39,15 @@ Image syntax is very much like link syntax.
 
 Inline (titles are optional):
 
-![alt text](/app/images/1.jpg "Home")
+![alt text](/joshkuhar/app/images/1.jpg "Home")
 Reference-style:
 
 ![alt text][id]
 
 [id]: /path/to/img.jpg "Title"
 Both of the above examples produce the same output:
+
+[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
 
 <img src="/path/to/img.jpg" alt="alt text" title="Title" />
 LISTS
