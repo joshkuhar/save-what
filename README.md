@@ -33,11 +33,13 @@ The user can remove the entire list by clicking the delete button.
 
 IMAGES
 
+
+
 Image syntax is very much like link syntax.
 
 Inline (titles are optional):
 
-![alt text](/path/to/img.jpg "Title")
+![alt text](/app/images/1.jpg "Home")
 Reference-style:
 
 ![alt text][id]
