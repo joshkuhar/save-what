@@ -2,14 +2,28 @@ global.DATABASE_URL = 'mongodb://localhost/app-test';
 
 var chai = require('chai');
 var chaiHttp = require('chai-http');
+
 var server = require('../server.js');
+var Items = require('../models/item');
 
 var should = chai.should();
 var app = server.app;
 
 chai.use(chaiHttp);
 
-describe('app', function() {
+
+describe('App', function() {
+  before(function(done) {
+    server.runServer(function() {
+      Items.create({'_id': '1',
+        'items': [{ "price" : "4.42", "item" : "beer" }], 
+        'name': 'foo'}, 
+        function() {
+          done();
+      });
+    });
+  });
+
     it('should return 200', function(done) {
         chai.request(app)
             .get('/a')
@@ -22,16 +36,24 @@ describe('app', function() {
     it('should return 201 on post', function(done) {
        chai.request(app)
        .post('/b')
-       .send({'items': [{ "price" : "4.42", "item" : "beer" }]}, {'name': 'Kale'})
+       .send({'_id': '1',
+        'items': [{ "price" : "4.42", "item" : "beer" }], 
+        'name': 'Foo'})
        .end(function(err, res) {
        		res.should.have.status(201);
             done();
        });
    });
+
+    after(function(done) {
+    Items.remove(function() {
+      done();
+    });
+  });
 });
 
 
-exports.app = app;
+// exports.app = app;
 
 
 
