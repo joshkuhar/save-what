@@ -33,17 +33,20 @@ The user can remove the entire list by clicking the delete button.
 
 
 ![image](/images/1.png "Home")
-Reference-style:
+![image](/images/2.png "Home")
+![image](/images/3.png "Home")
+![image](/images/4.png "Home")
 
-![alt text][id]
+Written-In
+---------------------
 
-[id]: /path/to/img.jpg "Title"
-Both of the above examples produce the same output:
-
-[id]: https://github.com/joshkuhar/app/images/1.png "Logo Title Text 2"
+HTML, CSS, JQUERY, NODE.JS, MONGO DB
 
 
-![image](main.png)
+TESTS
+---------------------
+
+Mocha, Chai
 
 
 
