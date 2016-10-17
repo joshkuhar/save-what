@@ -150,7 +150,6 @@ $('#get-history').click(function(){
 $('#save-updated-list').click(function(){
     var listId = $('#list-id').text();
     List.items = removeIdFromCachedItems();
-    console.log(cachedItems);
     editItem(listId, List);
     List = {};
 });
