@@ -32,7 +32,7 @@ The user can remove the entire list by clicking the delete button.
 
 
 
-![alt text](joshkuhar/app/images/1.png "Home")
+![image](/images/1.png "Home")
 Reference-style:
 
 ![alt text][id]
@@ -43,7 +43,7 @@ Both of the above examples produce the same output:
 [id]: https://github.com/joshkuhar/app/images/1.png "Logo Title Text 2"
 
 
-
+![image](main.png)
 
 
 
