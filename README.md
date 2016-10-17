@@ -31,15 +31,8 @@ The user can remove the entire list by clicking the delete button.
 
 
 
-IMAGES
 
-
-
-Image syntax is very much like link syntax.
-
-Inline (titles are optional):
-
-![alt text](/joshkuhar/app/images/1.jpg "Home")
+![alt text](joshkuhar/app/images/1.png "Home")
 Reference-style:
 
 ![alt text][id]
@@ -47,56 +40,15 @@ Reference-style:
 [id]: /path/to/img.jpg "Title"
 Both of the above examples produce the same output:
 
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
+[id]: https://github.com/joshkuhar/app/images/1.png "Logo Title Text 2"
 
-<img src="/path/to/img.jpg" alt="alt text" title="Title" />
-LISTS
 
-Unordered (bulleted) lists use asterisks, pluses, and hyphens (*, +, and -) as list markers. These three markers are interchangable; this:
 
-*   Candy.
-*   Gum.
-*   Booze.
-this:
 
-+   Candy.
-+   Gum.
-+   Booze.
-and this:
 
--   Candy.
--   Gum.
--   Booze.
-all produce the same output:
 
-<ul>
-<li>Candy.</li>
-<li>Gum.</li>
-<li>Booze.</li>
-</ul>
-Ordered (numbered) lists use regular numbers, followed by periods, as list markers:
 
-1.  Red
-2.  Green
-3.  Blue
-Output:
 
-<ol>
-<li>Red</li>
-<li>Green</li>
-<li>Blue</li>
-</ol>
-If you put blank lines between items, you’ll get <p> tags for the list item text. You can create multi-paragraph list items by indenting the paragraphs by 4 spaces or 1 tab:
 
-*   A list item.
 
-    With multiple paragraphs.
 
-*   Another item in the list.
-Output:
-
-<ul>
-<li><p>A list item.</p>
-<p>With multiple paragraphs.</p></li>
-<li><p>Another item in the list.</p></li>
-</ul>
