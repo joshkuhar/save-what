@@ -176,7 +176,13 @@ var clearViews = function(){
     $('#name').empty();
 };
 var showSavedListByName = function(index, value){
-    $('#item').append('<li id='+idForCachedItems+'><span class="first"> '  + value[index].item +    '</span> <span class="second">$' + value[index].price + " </span><input type='submit'value='delete'id='delete-item'></li>");
+    var listItemOpen = '<li id=' + idForCachedItems + '>';
+    var firstSpan = '<span class="first">' + value[index].item + '</span>';
+    var secondSpan = '<span class="second">$' + value[index].price + '</span>';
+    var deleteBttn = '<input type="submit" value="delete" id="delete-item">';
+    var listItemClose = '</li>';
+
+    $('#item').append(listItemOpen + firstSpan + secondSpan + deleteBttn + listItemClose);
 };
 var store_id = function(id){
     $('#item').append('<span id="list-id">' + id + '</span>');
