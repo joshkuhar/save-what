@@ -15,4 +15,3 @@ listName.get('/', function(req, res) {
 
 module.exports = listName;
 
-
