@@ -75,6 +75,8 @@ var postItem = function(item){
     });
     ajax.done(function(result){
         console.log(result);
+        var obj = cachedItems[idForCachedItems - 1];
+        obj.id = result._id;
     });
 }
 
@@ -126,13 +128,14 @@ $('#add-to-list').click(function(){
     var newPrice = calculate(price, averageTwentyReturn);
     displayItem(item, newPrice.toFixed(2));
     cacheItem(item, newPrice.toFixed(2));
+    idForCachedItems++;
     postItem(createItem(item, newPrice));
     $('#item-bought').val('');
     $('#price-paid').val('');
     $('#item-bought').focus();
     showClearAndUpdate();
     showSaveAndUpdate();
-    idForCachedItems++;
+    
 
 });
 // Delete item  list
