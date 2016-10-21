@@ -16,6 +16,10 @@ var createItem = function(item, price){
     return {item: {itemName: item, priceLater: price}};
 };
 
+var addItemIdToCache = function(result){
+    cachedItems[idForCachedItems - 1]._id = result._id;
+};
+
 //controller
 var calculate = function(price, multiplyer) {
     return price * multiplyer;
@@ -33,7 +37,7 @@ var removeFromCache = function(id){
 var removeIdFromCachedItems = function(){
     var exportableCachedItems = [];
     for (var x = 0; x < cachedItems.length; x++){
-        exportableCachedItems.push(cachedItems[x].items);
+        exportableCachedItems.push( {_id: cachedItems[x]._id, items: cachedItems[x].item} );
     }
     return exportableCachedItems;
 }
@@ -61,12 +65,6 @@ var getPage = function(data){
 };
 
 var postItem = function(item){
-// Must pass in the following object as follows
-//     "item": { 
-//         itemName: String,
-//         priceNow: String,
-//         priceLater: String
-//     }
     var ajax = $.ajax('/b', {
         type: 'POST',
         dataType: 'json',
@@ -75,8 +73,8 @@ var postItem = function(item){
     });
     ajax.done(function(result){
         console.log(result);
-        var obj = cachedItems[idForCachedItems - 1];
-        obj.id = result._id;
+        addItemIdToCache(result);
+
     });
 }
 
@@ -138,7 +136,9 @@ $('#add-to-list').click(function(){
     
 
 });
-// Delete item  list
+
+// !!!!must update endpoint for deleting items.
+// Delete item from  list
 $('#item').on('click', '#delete-item', function(){
     var id = $(this).parent().attr('id');
     removeFromCache(id);
@@ -229,11 +229,12 @@ var displayItem = function(item, price){
     var open = '<li id='+idForCachedItems+'>';
     var firstSpan = '<span class="first">' + item  + '</span>';
     var secondSpan = '<span class="second">$' + price + ' </span>';
-    var deleteBttn = '<input type="submit" value="delete" id="delete-current">';
+    var deleteBttn = '<input type="submit" value="delete" id="delete-item">';
     var listItemClose = '</li>';
     $('#item').append(open + firstSpan + secondSpan + deleteBttn + listItemClose);
     $('#truevalue').show();
 };
+
 var displayListName = function(name) {
     $('#name').prepend('<span id="list-name">List Name: '+name+'</span>');
 };
