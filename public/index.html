@@ -7,44 +7,40 @@
 </head>
 <body>
 	<!-- home page -->
+	<div id='header'>
 	<h1>VALUE CALCULATOR</h1>
-	
-	<div id = 'top'>
-
-
-		<div>Enter something you recently purchased in the first box. In the second box, enter the amount you paid for it. Displayed will be me how much money you would have in the future if you had invested your money instead. 
 			
-		</div><br>
-				<div class="title">Look up a previous list</div>
 				<div id="search-container"> 
+				<div class="title">Look up a previous list</div>
 				<input type="text" placeholder="get saved list name" id="search">
 				<input type="submit" value=" get " id="get-history">
 				</div><br>
-				<div id="name"></div><br>
-		<div class="title">Enter information below</div>
-		<input type="text" placeholder="What I bought" id="item-bought">
-		<input type="text" placeholder="What I paid for it" id="price-paid">
-		<input type="submit" value=" Add " id="add-to-list">
-		
 	</div>
+	<div id = 'top'>
+		<div>Enter something you recently purchased in the first box. In the second box, enter the amount you paid for it. Displayed will be me how much money you would have in the future if you had invested your money instead. 
+		</div><br>
+
+		<div class="title">Enter information below</div>
+	<input type="text" placeholder="What I bought" id="item-bought">
+	<input type="text" placeholder="What I paid for it" id="price-paid">
+	<input type="submit" value=" Add " id="add-to-list">
+		
+	</div><br>
 	
 
 	<!-- output page -->
 	<div id = 'middle'>
-		<h2>What You Really Paid </h2>
-		<div id="item"></div>
-
-		<input type="submit" value=" clear " id="clear">
-		<input type="submit" value="delete list" id="remove-list">
+		<div id="name"> <input type="submit" value="delete list" id="remove-list"></div><br>
+			<div id='truevalue'>What You Really Paid </div>
+			
+			<div id="item"></div>
+				<input type="submit" value=" clear " id="clear">
+				
 	</div>
 	<!-- history -->
 	<div id = 'bottom'><br>
 	<input type='text' placeholder="Save list as"id="listName">
-		<input type='submit' value="Save" id="save"><input type="submit" value="Update" id="save-updated-list">
-		
-		
-		
-
+	<input type='submit' value="Save" id="save"><input type="submit" value="Update" id="save-updated-list">
 	</div>
 	<div id='footer'></div>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
