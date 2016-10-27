@@ -1,14 +1,15 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var listName = require('./routers/listName/listName');
-var items = require('./routers/items/items');
+var categoryName = require('./routers/listName/category');
+var Item = require('./routers/items/items');
 
 
 var config = require('./config');
 
 var app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
 
 
@@ -40,8 +41,10 @@ exports.runServer = runServer;
 
 // var Items = require('./models/item');
 
-app.use('/a', listName);
-app.use('/b', items);
+app.use('/', categoryName);
+app.use('/', Item);
+// app.use('/b/:id', items);
+
 
 // app.get('/a', function(req, res) {
 //     // console.log(req);
