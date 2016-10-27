@@ -1,23 +1,53 @@
-var itemRow = require('express').Router();
-var Item = require('./itemsModels');
-
-itemRow.post('/', function(req, res) {	
-	console.log(req.body);
-	console.log(req.body.item);
+var itemRouter = require('express').Router();
+var Item = require('./itemsModel');
+var Category = require('../listName/categoryModel');
+// var Category = require('./categoryModel');  
 
 
-    Item.create({ item: req.body.item }, function(err, item) {
-    	console.log(item);
-        if (err) {
-        	console.log(item);
-        	console.log(err);
-            return res.status(500).json({
+itemRouter.post('/item/:id', function(req, res) {
+    var id = req.params.id;
+    console.log(id);
+    Item.create({ 
+        item: {
+            name: req.body.item.name,
+            price: req.body.item.price,
+            category: req.params.id
+            }
+        }, function(err, item) {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({
                 message: 'Internal Server Error'
             });
-        }
-        res.status(201).json(item);
+            } else {
+                Category.findOneAndUpdate({_id:req.params.id}, {
+                    $addToSet: {
+                        items: item._id
+                    }
+                }, function(err2, cat){
+                    if(err2) {
+                        console.log(err2);
+                    } else {
+                        res.json(item);
+                    }
+                });
+            }
+        // res.status(201).json(item);
     });
 });
 
+// itemRouter.delete('/item/:id', function(req, res) {
+//     console.log('hit');
+//     Item.findByIdAndRemove(req.params.id, function(err) {
+//         if (err) {
+//                 console.log(err);
+//                 return res.status(500).json({
+//                 message: 'Internal Server Error'
+//             });
+//         }
+//         res.status(202).end();
+//     });
+// });
 
-module.exports = itemRow;
+
+module.exports = itemRouter;
