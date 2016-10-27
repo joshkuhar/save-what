@@ -18,6 +18,9 @@ h1 {
 h2 {
 
 }
+.dbId{
+    display: none;
+}
 
 #top, #middle, #bottom {
 	width: 35em;
