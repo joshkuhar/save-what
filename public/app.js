@@ -1,7 +1,6 @@
 'use strict';
 
 //model
-var idForCachedItems = 0;
 var cachedItems = [];
 var List = {};
 var averageTwentyReturn = 4.42;
@@ -11,88 +10,79 @@ var clearModels = function(){
     List = {};
     existingList = false;
 };
-
-var createItem = function(item, price){
-    return {item: {itemName: item, priceLater: price}};
-};
-
-var addItemIdToCache = function(result){
-    cachedItems[idForCachedItems - 1]._id = result._id;
-};
-
 //controller
+var createItem = function(item, price){
+    return {item: {name: item, price: price}};
+};
 var calculate = function(price, multiplyer) {
     return price * multiplyer;
 };
-var cacheItem = function(item, price){
-    cachedItems.push( { id: idForCachedItems, item: {itemName: item, priceLater: price}  }  );
+var cacheItem = function(item){
+    cachedItems.push(item);
 };
 var removeFromCache = function(id){
     for (var x = 0; x < cachedItems.length; x++) {
-        if (cachedItems[x].id == id) {
+        if (cachedItems[x]._id == id) {
+            deleteFromDB(cachedItems[x]._id);
             cachedItems.splice(x, 1);
         }
     }
 };
-var removeIdFromCachedItems = function(){
-    var exportableCachedItems = [];
-    for (var x = 0; x < cachedItems.length; x++){
-        exportableCachedItems.push( {_id: cachedItems[x]._id, items: cachedItems[x].item} );
-    }
-    return exportableCachedItems;
-}
 // ENDPOINTS
 // GET endpoint
-var getPage = function(data){
-    var ajax = $.ajax('/a', {
+var getCategory = function(name){
+    var ajax = $.ajax('/category/' + name, {
         type: 'GET',
         dataType: 'json',
-        data: data,
+        // data: data,
         contentType: 'application/json'
     });
     ajax.done(  function  (result)    {
-        List.name = result[0].name;
-        displayListName(result[0].name);
-        var eachResult = result[0].items;
-        console.log(eachResult);
-        for (var x = 0; x<eachResult.length; x++){
-            cachedItems.push( { id: x, items: eachResult[x] });
-            showSavedListByName(x, eachResult);
-            idForCachedItems++;
-        }
-        store_id(result[0]._id);
+        console.log(result);
+        // List.name = result[0].name;
+        // displayListName(result[0].name);
+        // var eachResult = result[0].items;
+        // console.log(eachResult);
+        // for (var x = 0; x<eachResult.length; x++){
+        //     cachedItems.push( { id: x, items: eachResult[x] });
+        //     showSavedListByName(x, eachResult);
+        //     idForCachedItems++;
+        // }
+        // store_id(result[0]._id);
     });
 };
-
-var postItem = function(item){
-    var ajax = $.ajax('/b', {
+// POST ENDPOINTS
+var postCategoryName = function(name){
+    console.log(JSON.stringify(name));
+    var ajax = $.ajax('/category', {
         type: 'POST',
         dataType: 'json',
-        data: JSON.stringify(item),
+        data: JSON.stringify(name),
         contentType: 'application/json'
     });
     ajax.done(function(result){
         console.log(result);
-        addItemIdToCache(result);
-
+        cacheItem(result);
+        displayCategoryName(result._id, result.name);
     });
 }
-
-// POST endpoint
-var postToDB = function(data){
-    var ajax = $.ajax('/b', {
+var postItem = function(id, item){
+    console.log(JSON.stringify(item));
+    var ajax = $.ajax('/item/'+id, {
         type: 'POST',
         dataType: 'json',
-        data: JSON.stringify(data),
+        data: JSON.stringify(item),
+        // data: JSON.stringify(item),
         contentType: 'application/json'
     });
     ajax.done(function(result){
-        cachedItems.length = 0;
-        List = {};
-        idForCachedItems = 0;
-    }); 
-};
-// PUT endpoint
+        console.log("I'm " + result);
+        cacheItem(result);
+        displayItem(result._id, result.item.name, result.item.price);
+    });
+}
+
+// PUT endpoint delete item from list
 var editItem = function(id, data){
     console.log(id, data);
     var ajax = $.ajax('/b/' + id, {
@@ -101,15 +91,15 @@ var editItem = function(id, data){
         dataType: 'json',
         contentType: 'application/json'
     }); 
-
     ajax.done(function(result){
         console.log(result);
+
     });
 };
 
-// DELETE endpoint
+// DELETE item from database
 var deleteFromDB = function(id){
-    var ajax = $.ajax('/b/' + id, {
+    var ajax = $.ajax('/item/' + id, {
         type: 'DELETE',
         dataType: 'json'
     });
@@ -124,39 +114,33 @@ $('#add-to-list').click(function(){
     var item = $('#item-bought').val();
     var price = parseInt($('#price-paid').val());
     var newPrice = calculate(price, averageTwentyReturn);
-    displayItem(item, newPrice.toFixed(2));
-    cacheItem(item, newPrice.toFixed(2));
-    idForCachedItems++;
-    postItem(createItem(item, newPrice));
+
+
+    var id = $('.category-name').attr('id');
+    postItem(id, createItem(item, newPrice));
     $('#item-bought').val('');
     $('#price-paid').val('');
     $('#item-bought').focus();
     showClearAndUpdate();
     showSaveAndUpdate();
-    
-
 });
 
-// !!!!must update endpoint for deleting items.
 // Delete item from  list
 $('#item').on('click', '#delete-item', function(){
     var id = $(this).parent().attr('id');
-    removeFromCache(id);
     $(this).parent().remove();
-    console.log("clicked");
-});
-// Save list with name for later retreival
+    deleteFromDB(id);
+    });
+// Save list name
 $('#save').click(function(){
     if ($('#listName').val() === ""){
         alert("Please enter a name for your list.");
         return;
     } 
-    List.name = $('#listName').val();
-    List.items = removeIdFromCachedItems();
-    postToDB(List);
-    displayListName(List.name);
+    var categoryName = $('#listName').val();
+    postCategoryName({name: categoryName});
     $('#listName').val("");
-    $(this).prop("disabled",true);
+    // $(this).prop("disabled",true);
 });
 // Retrieve previous lists with search name
 $('#get-history').click(function(){
@@ -164,9 +148,9 @@ $('#get-history').click(function(){
         alert("Please clear current list before viewing a new one.")
         return;
     }
-    var search = $('#search').val();
-    var searchName = {name: search};
-    getPage(searchName);
+    var search = $('#search').val();    
+    console.log(search);
+    getCategory(search);
     $('#search').val('');
     showClearAndUpdate();
     showSaveAndUpdate();
@@ -225,8 +209,8 @@ var clearElementAfterPost = function(){
         $('#listName').val('');
         $('#item').empty();
 };
-var displayItem = function(item, price){
-    var open = '<li id='+idForCachedItems+'>';
+var displayItem = function(id, item, price){
+    var open = '<li id='+id+'>';
     var firstSpan = '<span class="first">' + item  + '</span>';
     var secondSpan = '<span class="second">$' + price + ' </span>';
     var deleteBttn = '<input type="submit" value="delete" id="delete-item">';
@@ -234,9 +218,8 @@ var displayItem = function(item, price){
     $('#item').append(open + firstSpan + secondSpan + deleteBttn + listItemClose);
     $('#truevalue').show();
 };
-
-var displayListName = function(name) {
-    $('#name').prepend('<span id="list-name">List Name: '+name+'</span>');
+var displayCategoryName = function(id, name) {
+    $('#cat-container').append('<span class="category-name"id="'+id+'">Name: '+name+'</span>');
 };
 var showClearAndUpdate = function(){
     $('#remove-list').show();
@@ -247,7 +230,6 @@ var showSaveAndUpdate = function(){
 };
 
 
- 
 
 
 
