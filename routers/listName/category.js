@@ -30,6 +30,16 @@ categoryRouter.get('/category/:name', function(req, res){
 	});
 });
 
+categoryRouter.delete('/category/:id', function(req, res){
+	Category.findByIdAndRemove(
+		req.params.id, function(err){
+			if(err){
+				console.log(err);
+			}
+			res.status(202).end();
+		});
+});
+
 module.exports = categoryRouter;
 
 	
