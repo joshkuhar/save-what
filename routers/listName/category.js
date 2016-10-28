@@ -17,18 +17,19 @@ categoryRouter.post('/category', function(req, res) {
 			});   
     });
 
-// categoryRouter.get('/category/:name', function(req, res){
-// 	Category.findOne({
-// 		name: req.params.name
-// 	})
-// 	.populate('items')
-// 	.exec(function(err, cat){
-// 		if (err) {
-// 			console.log(err);
-// 		}
-// 		res.json(cat);
-// 	});
-// });
+categoryRouter.get('/category/:name', function(req, res){
+	Category.findOne({
+		name: req.params.name
+	})
+	.populate('items')
+	.exec(function(err, cat){
+		if (err) {
+			console.log(err);
+		}
+		res.json(cat);
+	});
+});
 
 module.exports = categoryRouter;
 
+	
