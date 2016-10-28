@@ -38,22 +38,15 @@ var getCategory = function(name){
         contentType: 'application/json'
     });
     ajax.done(  function  (result)    {
-        console.log(result);
-        // List.name = result[0].name;
-        // displayListName(result[0].name);
-        // var eachResult = result[0].items;
-        // console.log(eachResult);
-        // for (var x = 0; x<eachResult.length; x++){
-        //     cachedItems.push( { id: x, items: eachResult[x] });
-        //     showSavedListByName(x, eachResult);
-        //     idForCachedItems++;
-        // }
-        // store_id(result[0]._id);
+        displayCategoryName(result._id, result.name);
+        for (var indx = 0; indx<result.items.length; indx++){
+            var x = result.items[indx];
+            displayItem(x._id, x.item.name, x.item.price);
+        }
     });
 };
 // POST ENDPOINTS
 var postCategoryName = function(name){
-    console.log(JSON.stringify(name));
     var ajax = $.ajax('/category', {
         type: 'POST',
         dataType: 'json',
@@ -61,13 +54,11 @@ var postCategoryName = function(name){
         contentType: 'application/json'
     });
     ajax.done(function(result){
-        console.log(result);
         cacheItem(result);
         displayCategoryName(result._id, result.name);
     });
 }
 var postItem = function(id, item){
-    console.log(JSON.stringify(item));
     var ajax = $.ajax('/item/'+id, {
         type: 'POST',
         dataType: 'json',
@@ -84,7 +75,6 @@ var postItem = function(id, item){
 
 // PUT endpoint delete item from list
 var editItem = function(id, data){
-    console.log(id, data);
     var ajax = $.ajax('/b/' + id, {
         type: 'PUT',
         data: JSON.stringify(data),
@@ -93,7 +83,6 @@ var editItem = function(id, data){
     }); 
     ajax.done(function(result){
         console.log(result);
-
     });
 };
 
@@ -128,6 +117,7 @@ $('#add-to-list').click(function(){
 // Delete item from  list
 $('#item').on('click', '#delete-item', function(){
     var id = $(this).parent().attr('id');
+    console.log(id);
     $(this).parent().remove();
     deleteFromDB(id);
     });
@@ -143,13 +133,12 @@ $('#save').click(function(){
     // $(this).prop("disabled",true);
 });
 // Retrieve previous lists with search name
-$('#get-history').click(function(){
+$('#get-category').click(function(){
     if (existingList == true){
         alert("Please clear current list before viewing a new one.")
         return;
     }
     var search = $('#search').val();    
-    console.log(search);
     getCategory(search);
     $('#search').val('');
     showClearAndUpdate();
