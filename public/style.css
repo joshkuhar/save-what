@@ -45,8 +45,9 @@ button:hover {
     cursor: pointer;
 }
 
-#remove-list, #clear{
+#delete-category{
 	display: none;
+    margin-left: 40%;
 }
 #list-id{
 	display: none;

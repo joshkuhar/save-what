@@ -38,6 +38,7 @@ var getCategory = function(name){
         contentType: 'application/json'
     });
     ajax.done(  function  (result)    {
+        $('#delete-category').show();
         displayCategoryName(result._id, result.name);
         for (var indx = 0; indx<result.items.length; indx++){
             var x = result.items[indx];
@@ -96,6 +97,15 @@ var deleteFromDB = function(id){
         console.log(result);
     });
 };
+var deleteCategory = function(id){
+    var ajax = $.ajax('/category/' + id, {
+        type: 'DELETE',
+        dataType: 'json'
+    });
+    ajax.done( function (result) {
+        console.log(result);
+    });
+}
 
 // Listeners
 // Calculate item and add to list
@@ -110,7 +120,7 @@ $('#add-to-list').click(function(){
     $('#item-bought').val('');
     $('#price-paid').val('');
     $('#item-bought').focus();
-    showClearAndUpdate();
+    showClearDelete();
     showSaveAndUpdate();
 });
 
@@ -141,10 +151,10 @@ $('#get-category').click(function(){
     var search = $('#search').val();    
     getCategory(search);
     $('#search').val('');
-    showClearAndUpdate();
-    showSaveAndUpdate();
+    showClearDelete();
     existingList = true;
     $('#truevalue').show();
+    $('#name').show();
     $('#save').prop("disabled",false);
 });
 //Save updated list to data base
@@ -156,7 +166,11 @@ $('#save-updated-list').click(function(){
 });
 // Clear previous list
 $('#clear').click(function(){
-    clearViews();
+    // $('#delete-category').css('display', 'none');
+    $('#clear').hide();
+    $('#item').empty();
+    $('#name').hide();
+    $('#cat-container').empty();
     clearModels();
     $('#save').prop("disabled",false);
     $('#bottom').hide();
@@ -164,9 +178,9 @@ $('#clear').click(function(){
 });
 
 // Delete previous lists
-$('#remove-list').click(function(){
-    var listId = $('#list-id').text();
-    deleteFromDB(listId);
+$('#delete-category').click(function(){
+    var id = $('#cat-container span:first-child').attr('id');
+    deleteCategory(id);
     clearViews();   
     clearModels();
     $('#truevalue').hide();
@@ -177,10 +191,11 @@ $('#remove-list').click(function(){
 
 //views
 var clearViews = function(){
-    $('#remove-list').hide();
+    $('#delete-category').css('display', 'none');
     $('#clear').hide();
     $('#item').empty();
     $('#name').empty();
+    $('#cat-container').empty();
 };
 var showSavedListByName = function(index, value){
     var listItemOpen = '<li id=' + idForCachedItems + '>';
@@ -210,13 +225,12 @@ var displayItem = function(id, item, price){
 var displayCategoryName = function(id, name) {
     $('#cat-container').append('<span class="category-name"id="'+id+'">Name: '+name+'</span>');
 };
-var showClearAndUpdate = function(){
-    $('#remove-list').show();
+var showClearDelete = function(){
+    $('#delete-category').show();
     $('#clear').show();
-};
-var showSaveAndUpdate = function(){
     $('#bottom').show();
 };
+
 
 
 
