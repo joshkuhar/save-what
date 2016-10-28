@@ -19,7 +19,8 @@ itemRouter.post('/item/:id', function(req, res) {
                 return res.status(500).json({
                 message: 'Internal Server Error'
             });
-            } else {
+            } 
+            else {
                 Category.findOneAndUpdate({_id:req.params.id}, {
                     $addToSet: {
                         items: item._id
@@ -36,18 +37,18 @@ itemRouter.post('/item/:id', function(req, res) {
     });
 });
 
-// itemRouter.delete('/item/:id', function(req, res) {
-//     console.log('hit');
-//     Item.findByIdAndRemove(req.params.id, function(err) {
-//         if (err) {
-//                 console.log(err);
-//                 return res.status(500).json({
-//                 message: 'Internal Server Error'
-//             });
-//         }
-//         res.status(202).end();
-//     });
-// });
+itemRouter.delete('/item/:id', function(req, res) {
+    console.log('hit');
+    Item.findByIdAndRemove(req.params.id, function(err) {
+        if (err) {
+                console.log(err);
+                return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+        res.status(202).end();
+    });
+});
 
 
 module.exports = itemRouter;
