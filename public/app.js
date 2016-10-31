@@ -121,7 +121,6 @@ $('#add-to-list').click(function(){
     $('#price-paid').val('');
     $('#item-bought').focus();
     showClearDelete();
-    showSaveAndUpdate();
 });
 
 // Delete item from  list
@@ -188,6 +187,8 @@ $('#delete-category').click(function(){
     $('#save').prop("disabled",false);
 });
 
+$()
+
 
 //views
 var clearViews = function(){
@@ -215,13 +216,25 @@ var clearElementAfterPost = function(){
 };
 var displayItem = function(id, item, price){
     var open = '<li id='+id+'>';
-    var firstSpan = '<span class="first">' + item  + '</span>';
+    var firstSpan = '<span class="first">' + item  + '</span><input class="editName"type="text"autofocus>';
     var secondSpan = '<span class="second">$' + price + ' </span>';
     var deleteBttn = '<input type="submit" value="delete" id="delete-item">';
     var listItemClose = '</li>';
     $('#item').append(open + firstSpan + secondSpan + deleteBttn + listItemClose);
     $('#truevalue').show();
 };
+// edit item name
+$('#item').on('click', 'span', function(){
+    $(this).hide().next().show();
+    $('.editName').on('keydown', function(event){
+        var id = $(this).parent().attr('id');
+        if(event.keyCode == 13) {
+
+            // editName(id, $(this).val());
+        }
+    });
+});
+var edit
 var displayCategoryName = function(id, name) {
     $('#cat-container').append('<span class="category-name"id="'+id+'">Name: '+name+'</span>');
 };
@@ -230,6 +243,18 @@ var showClearDelete = function(){
     $('#clear').show();
     $('#bottom').show();
 };
+
+$('#login-page').on('click', function(){
+    $('#login-form').show();
+    });
+
+$('#foot2').on('click', function(){
+    console.log('click');
+    // $('#foot2').hide();
+    // $('#foot').show().css('background', 'transparent');    
+    console.log($(this).text());
+
+});
 
 
 
