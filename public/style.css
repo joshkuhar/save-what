@@ -18,6 +18,16 @@ h1 {
 h2 {
 
 }
+.editName{
+    display:none;
+    width:6.6;
+}
+#login{
+    margin-left: 65%;
+}
+#login-form{
+    display: none;
+}
 .dbId{
     display: none;
 }
@@ -83,7 +93,15 @@ button:hover {
 
 #add-to-list, #save-updated-list, #get-history, #save{
 }
-
+#foot{
+    display: none;
+    /*border: none;*/
+    /*background: transparent;*/
+};
+#clickable{
+    border: none;
+    background: yellow;
+}
 
 @media only screen 
   and (min-device-width: 375px) 
