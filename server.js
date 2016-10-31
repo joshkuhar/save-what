@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var categoryName = require('./routers/listName/category');
 var Item = require('./routers/items/items');
+var User = require('./user-model/user');
 
 
 var config = require('./config');
@@ -43,19 +44,10 @@ exports.runServer = runServer;
 
 app.use('/', categoryName);
 app.use('/', Item);
+app.use('/', User);
 
 
-// app.put('/b/:id', function(req, res) {
-//     Items.findByIdAndUpdate(req.params.id, {
-//         items: req.body.items, 
-//         name: req.body.name
-//     }, function(err) {
-//         if (err) {
-//             console.log(err);
-//         }
-//         res.status(201).end();
-//     });
-// });
+
 
 
 app.use('*', function(req, res) {
