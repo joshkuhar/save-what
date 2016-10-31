@@ -76,7 +76,7 @@ var postItem = function(id, item){
 
 // PUT endpoint delete item from list
 var editItem = function(id, data){
-    var ajax = $.ajax('/b/' + id, {
+    var ajax = $.ajax('/item/' + id, {
         type: 'PUT',
         data: JSON.stringify(data),
         dataType: 'json',
@@ -187,9 +187,6 @@ $('#delete-category').click(function(){
     $('#save').prop("disabled",false);
 });
 
-$()
-
-
 //views
 var clearViews = function(){
     $('#delete-category').css('display', 'none');
@@ -228,13 +225,15 @@ $('#item').on('click', 'span', function(){
     $(this).hide().next().show();
     $('.editName').on('keydown', function(event){
         var id = $(this).parent().attr('id');
+        var name = $(this).val();
         if(event.keyCode == 13) {
-
-            // editName(id, $(this).val());
+            editItem(id, {item: {name: name}});
+            $(this).val('');
+            $(this).hide().prev().text(name).show();
         }
     });
 });
-var edit
+
 var displayCategoryName = function(id, name) {
     $('#cat-container').append('<span class="category-name"id="'+id+'">Name: '+name+'</span>');
 };
