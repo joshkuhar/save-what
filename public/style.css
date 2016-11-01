@@ -2,9 +2,6 @@
 body {
     background-color: #F0F720;
     font-family: 'Roboto Condensed', sans-serif;
-
-	background: #F0F720; /* fallback for old browsers */ /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #BABF22 , #F0F720); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 	font-size: 100%;
 	height: auto;
 }
@@ -30,6 +27,8 @@ h2 {
 }
 #login-form{
     display: none;
+    width: 30%;
+    margin: auto;
 }
 .dbId{
     display: none;
