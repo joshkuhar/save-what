@@ -30,6 +30,30 @@ categoryRouter.get('/category/:name', function(req, res){
 	});
 });
 
+categoryRouter.put('/category/:id', function(req, res){
+	console.log(req.body);
+	Category.update({_id: req.params.id}, {$set: {name: req.body.name}}, 
+		function(err){
+			if(err){
+				console.log(err);
+				return;
+			}
+			res.status(201).end();
+		});
+});
+
+// itemRouter.put('/item/:id', function(req, res){
+//     Item.update({_id: req.params.id}, 
+//         {$set: { "item.name": req.body.item.name} },
+//         function(err){
+//         if(err){
+//             console.log(err);
+//             return;
+//         }
+//         res.status(201).end();
+//     });
+// });
+
 categoryRouter.delete('/category/:id', function(req, res){
 	Category.findByIdAndRemove(
 		req.params.id, function(err){
