@@ -18,6 +18,9 @@ h1 {
 h2 {
 
 }
+#cat-name{
+    display: none;
+}
 .editName{
     display:none;
     width:6.6;
