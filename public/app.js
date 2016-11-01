@@ -258,19 +258,52 @@ var editCategoryName = function(id, data){
     });
 };
 
-// var editItem = function(id, data){
-//     var ajax = $.ajax('/item/' + id, {
-//         type: 'PUT',
-//         data: JSON.stringify(data),
-//         dataType: 'json',
-//         contentType: 'application/json'
-//     }); 
-//     ajax.done(function(result){
-//         console.log(result);
-//     });
-// };
+$('#login-page').on('click', function(){
+    $('#login-form').show();
+    $('#main-page').hide();
+});
 
+$('#go-back').on('click', function(){
+    $('#login-form').hide();
+    $('#main-page').show();
+});
 
+$('#authenticate').click(function(){
+    var username = $('#username');
+    var password = $('#password');
+    submitAuth({username: username.val(), password: password.val()});
+    username.val('');
+    password.val('');
+});
+var submitAuth = function(data){
+    var ajax = $.ajax('/hidden', {
+        type: 'GET',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        contentType: 'application/json'
+    });
+    ajax.done(function(result){
+        console.log(result);
+    });
+};
+$('#create-auth').click(function(){
+    var username = $('#create-username');
+    var password = $('#create-password');
+    createAuth({username: username.val(), password: password.val()});
+    username.val('');
+    password.val('');
+});
+var createAuth = function(data){
+    var ajax = $.ajax('/users', {
+        type: 'POST',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        contentType: 'application/json'
+    });
+    ajax.done(function(result){
+        console.log(result);
+    });
+};
 
 
 var displayCategoryName = function(id, name) {
@@ -283,9 +316,9 @@ var showClearDelete = function(){
     $('#bottom').show();
 };
 
-$('#login-page').on('click', function(){
-    $('#login-form').show();
-    });
+
+
+
 
 $('#foot2').on('click', function(){
     console.log('click');
