@@ -40,7 +40,7 @@ userRouter.use(passport.initialize());
 
 userRouter.get('/hidden', passport.authenticate('basic', {session: false}), function(req, res) {
     res.json({
-        message: 'Luke... I am your father'
+        message: 'pass'
     });
 });
 
@@ -53,6 +53,7 @@ userRouter.post('/users', function(req, res) {
             message: "No request body"
         });
     }
+    console.log(req.body);
 
     if (!('username' in req.body)) {
         return res.status(422).json({
