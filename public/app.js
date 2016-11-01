@@ -113,8 +113,6 @@ $('#add-to-list').click(function(){
     var item = $('#item-bought').val();
     var price = parseInt($('#price-paid').val());
     var newPrice = calculate(price, averageTwentyReturn);
-
-
     var id = $('.category-name').attr('id');
     postItem(id, createItem(item, newPrice));
     $('#item-bought').val('');
@@ -234,8 +232,50 @@ $('#item').on('click', 'span', function(){
     });
 });
 
+$('#cat-container').on('click', 'span', function(){
+    console.log($(this).text());
+    $('.category-name').hide();
+    $('#cat-name').show();
+    $('#cat-name').on('keydown', function(event){
+        var id = $(this).prev().attr('id');
+        var name = $(this).val();
+        if(event.keyCode == 13) {
+            editCategoryName(id, {name: name});
+            $(this).val(' ');
+            $(this).hide().prev().text(name).show();
+        }
+    });
+});
+var editCategoryName = function(id, data){
+    var ajax = $.ajax('/category/' + id, {
+        type: 'PUT',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        contentType: 'application/json'
+    });
+    ajax.done(function(result){
+        console.log(result);
+    });
+};
+
+// var editItem = function(id, data){
+//     var ajax = $.ajax('/item/' + id, {
+//         type: 'PUT',
+//         data: JSON.stringify(data),
+//         dataType: 'json',
+//         contentType: 'application/json'
+//     }); 
+//     ajax.done(function(result){
+//         console.log(result);
+//     });
+// };
+
+
+
+
 var displayCategoryName = function(id, name) {
-    $('#cat-container').append('<span class="category-name"id="'+id+'">Name: '+name+'</span>');
+    $('#cat-container').append('<span>Category Name: </span><span class="category-name"id="'+id+'">'+name+'</span><input id="cat-name"type="text"autofocus>');
+
 };
 var showClearDelete = function(){
     $('#delete-category').show();
