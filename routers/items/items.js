@@ -39,7 +39,6 @@ itemRouter.post('/item/:id', function(req, res) {
 
 //Something.update({_id: 2323293029302}, {$set: {something: 'wtfffffffff'}},
 itemRouter.put('/item/:id', function(req, res){
-    console.log(req.body.item.name);
     Item.update({_id: req.params.id}, 
         {$set: { "item.name": req.body.item.name} },
         function(err){
