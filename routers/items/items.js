@@ -37,7 +37,6 @@ itemRouter.post('/item/:id', function(req, res) {
     });
 });
 
-//Something.update({_id: 2323293029302}, {$set: {something: 'wtfffffffff'}},
 itemRouter.put('/item/:id', function(req, res){
     Item.update({_id: req.params.id}, 
         {$set: { "item.name": req.body.item.name} },
@@ -50,17 +49,6 @@ itemRouter.put('/item/:id', function(req, res){
     });
 });
 
-// app.put('/b/:id', function(req, res) {
-//     Items.findByIdAndUpdate(req.params.id, {
-//         items: req.body.items, 
-//         name: req.body.name
-//     }, function(err) {
-//         if (err) {
-//             console.log(err);
-//         }
-//         res.status(201).end();
-//     });
-// });
 itemRouter.delete('/item/:id', function(req, res) {
     console.log('hit');
     Item.findByIdAndRemove(req.params.id, function(err) {
