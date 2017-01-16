@@ -15,9 +15,12 @@ chai.use(chaiHttp);
 describe('App', function() {
   before(function(done) {
     server.runServer(function() {
-      Items.create({'_id': '1',
-        'items': [{ "price" : "4.42", "item" : "beer" }], 
-        'name': 'foo'}, 
+      Item.create({'_id': '1',
+        'item': { 
+          "price" : "4.42", 
+          "name" : "beer",
+          "category":"111aaa" 
+        }, 
         function() {
           done();
       });
@@ -26,24 +29,24 @@ describe('App', function() {
 
     it('should return 200', function(done) {
         chai.request(app)
-            .get('/a')
+            .get('/category/111aaa')
             .end(function(err, res) {
                 res.should.have.status(200);
                 done();
             });	
     });
 
-    it('should return 201 on post', function(done) {
-       chai.request(app)
-       .post('/b')
-       .send({'_id': '1',
-        'items': [{ "price" : "4.42", "item" : "beer" }], 
-        'name': 'Foo'})
-       .end(function(err, res) {
-       		res.should.have.status(201);
-            done();
-       });
-   });
+   //  it('should return 201 on post', function(done) {
+   //     chai.request(app)
+   //     .post('/b')
+   //     .send({'_id': '1',
+   //      'items': [{ "price" : "4.42", "item" : "beer" }], 
+   //      'name': 'Foo'})
+   //     .end(function(err, res) {
+   //     		res.should.have.status(201);
+   //          done();
+   //     });
+   // });
 
     after(function(done) {
     Items.remove(function() {
