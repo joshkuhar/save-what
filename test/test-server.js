@@ -35,6 +35,14 @@ describe('App', function() {
                 done();
             });	
     });
+        it('should have an object', function(done) {
+        chai.request(app)
+            .get('/category/5877425fe01973075cb47c5f')
+            .end(function(err, res) {
+                res.should.be.an('object');
+                done();
+            }); 
+    });
 
     it('should return 201 on post', function(done) {
        chai.request(app)
