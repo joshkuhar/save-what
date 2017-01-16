@@ -19,7 +19,7 @@ describe('App', function() {
         'item': { 
           "price" : "4.42", 
           "name" : "beer",
-          "category":"111aaa" 
+          "category":"5877425fe01973075cb47c5f" 
         }}, 
         function() {
           done();
@@ -29,24 +29,27 @@ describe('App', function() {
 
     it('should return 200', function(done) {
         chai.request(app)
-            .get('/category/111aaa')
+            .get('/category/5877425fe01973075cb47c5f')
             .end(function(err, res) {
                 res.should.have.status(200);
                 done();
             });	
     });
 
-   //  it('should return 201 on post', function(done) {
-   //     chai.request(app)
-   //     .post('/b')
-   //     .send({'_id': '1',
-   //      'items': [{ "price" : "4.42", "item" : "beer" }], 
-   //      'name': 'Foo'})
-   //     .end(function(err, res) {
-   //     		res.should.have.status(201);
-   //          done();
-   //     });
-   // });
+    it('should return 201 on post', function(done) {
+       chai.request(app)
+       .post('/item/5877425fe01973075cb47c5f')
+       .send({
+        item: {
+          name: "foo",
+          price: "12"
+       }
+     })
+       .end(function(err, res) {
+       		res.should.have.status(201);
+            done();
+       });
+   });
 
     after(function(done) {
     Item.remove(function() {
