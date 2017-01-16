@@ -29,7 +29,7 @@ itemRouter.post('/item/:id', function(req, res) {
                     if(err2) {
                         console.log(err2);
                     } else {
-                        res.json(item);
+                        res.status(201).json(item);
                     }
                 });
             }
