@@ -4,7 +4,7 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 
 var server = require('../server.js');
-var Items = require('../models/item');
+var Item = require('../models/item');
 
 var should = chai.should();
 var app = server.app;
@@ -20,7 +20,7 @@ describe('App', function() {
           "price" : "4.42", 
           "name" : "beer",
           "category":"111aaa" 
-        }, 
+        }}, 
         function() {
           done();
       });
@@ -49,7 +49,7 @@ describe('App', function() {
    // });
 
     after(function(done) {
-    Items.remove(function() {
+    Item.remove(function() {
       done();
     });
   });
