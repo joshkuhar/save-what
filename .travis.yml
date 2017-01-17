@@ -8,3 +8,10 @@ addons:
     - mongodb-3.2-precise
     packages:
     - mongodb-org-server
+deploy:
+  provider: heroku
+  api_key:
+    secure: BuPCA/RAf+nqaOap4Ys+ikUCiDIIIGelYiE5x1++fSVS7SDha3JNFt1yRyqfIevk82c9gjPGkSOhHelepZLdaXLvwnvZHrvAY79SrxSIZ6hSPOrkqtIZLRbjDTlUjck82In3uD2lR/ToXOA1yyxojM0tQpnehHhlw5ZwPFBZN6CCwPQMixUQdIeJIKi8g8FMo5DYAHOxUZRcMY9LyM6IVo7Z/ii2HYbX0GgtlExlgNDCOE4vi5P+Go9mZgeLT9zTYbr6atnxZ3VhzA1T6dVd0HgOFdUju/rpsFG9zRhkQeqvFJyCqBgcdIYxTMCIIlilXEa8Ky9+GlJtBTCZoUqc+B7kVfQZSGYa31Kl94POOgMUsuUZZLrDZMHZwfA3BTcf2Xvgf3wLnEuU+IBt1iWL34xI5kBfeNmH0VxzQYsI624UokgcH4QeZ+MMBU3QbNYntHOMni0qcDMC9aqMLR6hdrHGE5L3++ojC9yxoczgWptKLvJ4H3H/cU7i/0CRf1YhNEQl3JzqKnWJSY3RYGWdeMuG8EPZk+fWlWN0QhnbkTG/KHwP/a/4iFaIf38CpdxXmiXRjQ+PaoB937vfuYohFsPqdkSGEuPRidfTD8Jte7h/2edK0WXdhd7Zb9xEqoU22sGxge6aLdGZQANQ74NZh1j0iTdgrpDbpft7FReRM2I=
+  app: gentle-citadel-11715
+  on:
+    repo: joshkuhar/app
