@@ -30,6 +30,9 @@ h2 {
     width: 30%;
     margin: auto;
 }
+#create-credentials{
+    display: none;
+}
 .dbId{
     display: none;
 }
