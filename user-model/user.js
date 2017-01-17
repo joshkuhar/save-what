@@ -39,8 +39,10 @@ userRouter.use(passport.initialize());
 
 
 userRouter.get('/hidden', passport.authenticate('basic', {session: false}), function(req, res) {
+	var user = req.user;
     res.json({
-        message: 'pass'
+        message: 'pass',
+        user: user._id
     });
 });
 

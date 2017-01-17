@@ -10,6 +10,7 @@ var clearModels = function(){
     List = {};
     existingList = false;
 };
+var token = null;
 //controller
 var createItem = function(item, price){
     return {item: {name: item, price: price}};
@@ -29,6 +30,47 @@ var removeFromCache = function(id){
     }
 };
 // ENDPOINTS
+
+// GET sign in username and password
+var submitAuth = function(username, password){
+    var ajax = $.ajax('/hidden', {
+        type: 'GET',
+        // data: JSON.stringify(data),
+        dataType: 'json',
+        contentType: 'application/json',
+        error: function(XHR, res, err){
+            console.log(XHR, res, err);
+        },
+        success: function(){
+
+        }
+    });
+    ajax.done(function(result){
+        console.log(result);
+        var response = $('#login-success');
+        if(result){
+            token = result.user;
+            response.append("SUCCESS, you logged in as User: "+ token);
+        } else {
+            response.append("Sorry, try again");
+            console.log(result);
+        }
+        
+    });
+};
+
+// POST Username Password
+var createAuth = function(data){
+    var ajax = $.ajax('/users', {
+        type: 'POST',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        contentType: 'application/json'
+    });
+    ajax.done(function(result){
+        console.log(result);
+    });
+};
 // GET endpoint
 var getCategory = function(name){
     var ajax = $.ajax('/category/' + name, {
@@ -264,28 +306,21 @@ $('#login-page').on('click', function(){
 });
 
 $('#go-back').on('click', function(){
+    $('#login-credentials').show();
+    $('#create-credentials').hide();
     $('#login-form').hide();
     $('#main-page').show();
 });
 
 $('#authenticate').click(function(){
+    $('#login-success').empty();
     var username = $('#username');
     var password = $('#password');
-    submitAuth({username: username.val(), password: password.val()});
+    submitAuth(username.val(), password.val());
     username.val('');
     password.val('');
 });
-var submitAuth = function(data){
-    var ajax = $.ajax('/hidden', {
-        type: 'GET',
-        data: JSON.stringify(data),
-        dataType: 'json',
-        contentType: 'application/json'
-    });
-    ajax.done(function(result){
-        console.log(result);
-    });
-};
+
 $('#create-auth').click(function(){
     var username = $('#create-username');
     var password = $('#create-password');
@@ -293,18 +328,10 @@ $('#create-auth').click(function(){
     username.val('');
     password.val('');
 });
-var createAuth = function(data){
-    var ajax = $.ajax('/users', {
-        type: 'POST',
-        data: JSON.stringify(data),
-        dataType: 'json',
-        contentType: 'application/json'
-    });
-    ajax.done(function(result){
-        console.log(result);
-    });
-};
-
+$('#start-create').on('click', function(){
+    $('#login-credentials').hide();
+    $('#create-credentials').show();
+});
 
 var displayCategoryName = function(id, name) {
     $('#cat-container').append('<span>Category Name: </span><span class="category-name"id="'+id+'">'+name+'</span><input id="cat-name"type="text"autofocus>');

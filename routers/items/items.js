@@ -6,7 +6,6 @@ var Category = require('../listName/categoryModel');
 
 itemRouter.post('/item/:id', function(req, res) {
     var id = req.params.id;
-    console.log(id);
     Item.create({ 
         item: {
             name: req.body.item.name,

@@ -13,15 +13,20 @@
 			
 </div>
 <div id=login-form> Please entrer you login information
+				<div id='login-credentials'>
 				<input type='text' id='username' placeholder="username">
 				<input type='text' id='password' placeholder='password'>
 				<input type='submit' value='submit' id='authenticate'>
-				<br><br><br>
-				If you don't have an account, please create one below.<br>
-				<input type='text' id='create-username' placeholder="create username">
-				<input type='text' id='create-password' placeholder='create password'>
-				<input type='submit' value='submit' id='create-auth'>
-				<br><br><span id='go-back'>Go Back</span>
+				<br><br><div id='login-success'></div><br>
+				Don't have an account? Click create to create one.<br><br>
+				</div>
+				<span id='start-create'>CREATE</span>
+				<div id='create-credentials'>
+					<input type='text' id='create-username' placeholder="create username">
+					<input type='text' id='create-password' placeholder='create password'>
+					<input type='submit' value='submit' id='create-auth'>
+				</div>
+				<br><br><span id='go-back'>Back</span>
 </div>
 	<!-- home page -->
 <section id='main-page'>
