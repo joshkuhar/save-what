@@ -3,7 +3,7 @@ VALUE CALCULATOR
 
 Overview	
 ---------------------
-This is a single page app that estimates the future value of money. The values are only estimates and are displayed to encourage the user to think about their spending habits in a more, fiscally responsible way.
+This is a single page app that encourages the user to think about money differently.
 
 
 API
@@ -27,6 +27,21 @@ The user can remove entire lines and add new items to the list.
 ### Delete
 The user can remove the entire list by clicking the delete button.
 
+Written-In
+---------------------
+
+- HTML 
+- CSS 
+- JQUERY 
+- NODE.JS
+- Express 
+- MONGO DB
+
+
+TESTS
+---------------------
+
+Mocha, Chai
 
 
 
@@ -37,16 +52,7 @@ The user can remove the entire list by clicking the delete button.
 ![image](/images/3.png "Home")
 ![image](/images/4.png "Home")
 
-Written-In
----------------------
 
-HTML, CSS, JQUERY, NODE.JS, MONGO DB
-
-
-TESTS
----------------------
-
-Mocha, Chai
 
 
 
