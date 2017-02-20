@@ -110,7 +110,6 @@ var postItem = function(id, item){
         contentType: 'application/json'
     });
     ajax.done(function(result){
-        console.log("I'm " + result);
         cacheItem(result);
         displayItem(result._id, result.item.name, result.item.price);
     });

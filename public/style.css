@@ -1,6 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300);
 body {
-    background-color: #F0F720;
     font-family: 'Roboto Condensed', sans-serif;
 	font-size: 100%;
 	height: auto;
@@ -15,23 +14,22 @@ h1 {
 h2 {
 
 }
+.header-image {
+    background-image: url('/assets/piggy-bank.jpg'); 
+    margin: auto;
+    display: block;
+    margin: auto;
+    height: 20em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
 #cat-name{
     display: none;
 }
 .editName{
     display:none;
     width:6.6;
-}
-#login{
-    margin-left: 65%;
-}
-#login-form{
-    display: none;
-    width: 30%;
-    margin: auto;
-}
-#create-credentials{
-    display: none;
 }
 .dbId{
     display: none;
@@ -73,9 +71,6 @@ button:hover {
 	text-align: center;
     border-bottom-style: solid;
     border-bottom-width: .1em;
-}
-#header{
-
 }
 
 .title{
