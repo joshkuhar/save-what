@@ -254,7 +254,7 @@ var displayItem = function(id, item, price){
     var open = '<li id='+id+'>';
     var firstSpan = '<span class="first">' + item  + '</span><input class="editName"type="text"autofocus>';
     var secondSpan = '<span class="second">$' + price + ' </span>';
-    var deleteBttn = '<input type="submit" value="delete" id="delete-item">';
+    var deleteBttn = '<button class="delete-button" id="delete-item">x</button>';
     var listItemClose = '</li>';
     $('#item').append(open + firstSpan + secondSpan + deleteBttn + listItemClose);
     $('#truevalue').show();
@@ -333,7 +333,7 @@ $('#start-create').on('click', function(){
 });
 
 var displayCategoryName = function(id, name) {
-    $('#cat-container').append('<span>Category Name: </span><span class="category-name"id="'+id+'">'+name+'</span><input id="cat-name"type="text"autofocus>');
+    $('#cat-container').append('<span class="category-name"id="'+id+'">'+name+'</span><input id="cat-name"type="text"autofocus>');
 
 };
 var showClearDelete = function(){

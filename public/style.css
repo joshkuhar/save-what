@@ -30,7 +30,7 @@ h2 {
 
 }
 .header-image {
-    background-image: url('/assets/piggy-bank.jpg'); 
+    background-image: url('/assets/pbank.jpg'); 
     margin: auto;
     display: block;
     margin: auto;
@@ -50,6 +50,15 @@ h2 {
 #cat-name{
     display: none;
 }
+.cat-name-display {
+    font-size: 3em;
+    /* margin: 1em auto; */
+    margin-top: 1.5em;
+    text-transform: capitalize;
+}
+.cat-name-insert {
+
+}
 .editName{
     display:none;
     width:6.6;
@@ -59,8 +68,9 @@ h2 {
 }
 
 #top, #middle, #bottom {
-	width: 35em;
-	margin: auto;
+    width: 45em;
+    margin: auto;
+    color: #454858;
 }
 #bottom {
     display: none;
@@ -73,24 +83,71 @@ li {
 input {
 	font-size: 1em;
 }
-button:hover {
-    background-color: #f55b59;
+.input-button {
+    font-size: 1.6em;
+    border: .02em solid white;
+    border-radius: 5px;
+    vertical-align: bottom;
+    width: 4em;
+    margin-left: .1em;
+    padding-bottom: .2em;
+    background-color: #F3A193;
+    color: white;
+    font-weight: 100;
+}
+.input-button:hover {
+    background-color: #D86A5D;
     cursor: pointer;
 }
-
+.cat-name {
+    font-size: 1.5em;
+    border: none;
+    padding: .2em;
+    border-radius: 5px;
+}
+.input-item {
+    font-size: 1.5em;
+    border: none;
+    padding: .2em;
+    border-radius: 5px;
+}
+.input-price {
+    font-size: 1.5em;
+    border: none;
+    padding: .2em;
+    border-radius: 5px;
+}
 #delete-category{
 	display: none;
-    margin-left: 40%;
 }
+
 #list-id{
 	display: none;
 }
 .first, .second {
-	display: inline-block;
-	width: 7em;
-	text-align: center;
+    display: inline-block;
+    width: 7em;
+    text-align: center;
     border-bottom-style: solid;
-    border-bottom-width: .1em;
+    border-bottom-width: .01em;
+    margin-top: .5em;
+}
+.delete-button{
+    font-size: .5em;
+    width: 1.7em;
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    /* padding-bottom: .2em; */
+    padding-top: .2em;
+    text-transform: capitalize;
+    margin-left: 1.5em;
+    margin-top: .4em;
+}
+.delete-button:hover {
+    background-color: darkred;
+    cursor: pointer;
 }
 
 .title{
@@ -98,15 +155,58 @@ button:hover {
 
 }
 #name {
-    display: block;
-    font-style: oblique;
+    display: inline-block;
+    float: right;
+    margin-right: 9.5em;
+    margin-top: .9em;
     
 }
-#truevalue{
-    width: 60%;
-    margin: auto;
-    display: none;
+.row-list {
+    font-size: 2em;
+    font-weight: 100;
+    text-transform: capitalize;
 }
+#truevalue{
+    display: none;
+    width: 14em;
+    text-align: right;
+    font-size: 2em;
+    font-weight: 100;
+    margin: 1em 0 .5em 0;
+}
+.clear-button{
+    font-size: 1.6em;
+    border: .02em solid white;
+    border-radius: 5px;
+    vertical-align: bottom;
+    width: 4em;
+    margin-left: .1em;
+    padding-bottom: .2em;
+    background-color: #F3A193;
+    color: white;
+    font-weight: 100;
+}
+.clear-button:hover {
+    background-color: #D86A5D;
+    cursor: pointer;
+}
+.delete-cat-button{
+    font-size: 1em;
+    border: .02em solid white;
+    border-radius: 5px;
+    vertical-align: bottom;
+    width: 6em;
+    margin-left: .1em;
+    padding-bottom: .2em;
+    background-color: #F3A193;
+    color: white;
+    font-weight: 100;
+}
+.delete-cat-button:hover{
+    background-color: darkred;
+    cursor: pointer;
+}
+
 #footer {
 	height: 100em;
 }
@@ -123,18 +223,15 @@ button:hover {
     background: yellow;
 }
 
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2) { 
-    body {
-        font-size: 140%;
+@media only screen and (max-width: 600px) {
+    .header-image {
+        background-image: url('/assets/pbank-m.jpg'); 
     }
-    input {
-        font-size: 1.5em;
-    }
-    span {
-        font-size: 2em;
+
+}
+@media only screen and (max-width: 500px) {
+    .header-image {
+        background-image: url('/assets/pbank-m.jpg'); 
     }
 
 }

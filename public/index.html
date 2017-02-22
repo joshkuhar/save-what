@@ -23,28 +23,30 @@
 		</div><br>
 		<!-- form -->
 			<div class="title">Create category name below</div>
-			<input type='text' placeholder="Category Name"id="listName">
-			<input type='submit' value="Save" id="save"><p>
-			<div id="cat-container"></div><p>
+			<input type='text' placeholder="Category Name" class="cat-name" id="listName">
+			<button class="input-button" id="save">save</button>
+			
+			<p>
+			<div id="cat-container" class="cat-name-display"></div><p>
 
 			<div class="title">Enter information below</div>
-				<input type="text" placeholder="What I bought" id="item-bought">
-				<input type="text" placeholder="What I paid for it" id="price-paid">
-				<input type="submit" value=" Add " id="add-to-list">
+				<input type="text" placeholder="What I bought" class="input-item" id="item-bought">
+				<input type="text" placeholder="What I paid for it" class="input-price" id="price-paid">
+				<button class="input-button" id="add-to-list">add</button>
 	</div>
 	<br>
 	<!-- output page -->
 	<div id = 'middle'>
-		<div id="name">  
-			<input type="submit" value="delete list" id="delete-category"></div>
+		
+			
 				<div id='truevalue'>What You Really Paid </div>
-					<div id="item"></div>
+					<div class="row-list" id="item"></div>
 						
 				
 	</div>
 	<!-- history -->
 	<div id = 'bottom'><br>
-	<input type="submit" value="clear-all" id="clear">
+	<button class="clear-button" id="clear">clear</button><div id="name"><button class="delete-cat-button" id="delete-category">delete list</button></div>  
 	</div>
 	<div id='foot'><input type='text' placeholder='text' id='clickable'></div>
 	<div id='foot2' contenteditable="true"></div>
