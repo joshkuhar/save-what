@@ -1,15 +1,30 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300);
 body {
     font-family: 'Roboto Condensed', sans-serif;
-	font-size: 100%;
-	height: auto;
+    margin: 0em 0em 0em 0em;
 }
-
+/*
+color pallette
+#6D728B
+#F2F2F0
+#F3A193
+#F5CDC6
+#D86A5D
+*/
 h1 {
-    font-style: italic;
-    width: 20em:
-    margin: auto;
-    text-align: center;
+    display: inline-block;
+    margin-left: 2em;
+    margin-top: 0em;
+    font-size: 3em;
+    padding-top: .2em;
+    color: #454858;
+}
+#search-container {
+    display: inline-block;
+    float: right;
+    margin: .5em;
+    margin-right: 2em;
+    padding-top: .5em;
 }
 h2 {
 
@@ -19,10 +34,18 @@ h2 {
     margin: auto;
     display: block;
     margin: auto;
-    height: 20em;
+    height: 30em;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center bottom;
+    box-shadow: 0px 1px 10px 0px #D86A5D;
+}
+.main-list {
+    padding-top: 1em;
+    background: #F5CDC6; /* fallback for old browsers */
+    /* background: -webkit-linear-gradient(to left, #F3A193 , #6D728B);  //Chrome 10-25, Safari 5.1-6 */
+    /* background: linear-gradient(to left, #F3A193 , #6D728B); //W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 #cat-name{
     display: none;
@@ -42,10 +65,7 @@ h2 {
 #bottom {
     display: none;
 }
-#search-container {
-	margin-left: 50%;
-	width: 30em;
-}	
+	
 
 li {
 	list-style: none;
