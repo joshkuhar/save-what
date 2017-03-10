@@ -102,6 +102,7 @@ var postCategoryName = function(name){
     });
 }
 var postItem = function(id, item){
+    console.log("I made a request to post");
     var ajax = $.ajax('/item/'+id, {
         type: 'POST',
         dataType: 'json',
