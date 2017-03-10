@@ -47,10 +47,8 @@ Mocha, Chai
 
 
 
-![image](/images/1.png "Home")
-![image](/images/2.png "Home")
-![image](/images/3.png "Home")
-![image](/images/4.png "Home")
+![image](/images/demo.png "Home")
+
 
 
 
