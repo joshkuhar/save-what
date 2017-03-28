@@ -18,10 +18,11 @@
 	</div>
 	<!-- instructions -->
 	<section class="main-list">
-	<div id = 'top'>
-		<div>Create a name for list. And then enter something you recently purchased in the first box. In the second box, enter the amount you paid for it. Displayed will be how much money you would have in the future if you had invested your money instead. 
+	<div id = 'top' class="top">
+		<div class="instructions">Create a name for list. And then enter something you recently purchased in the first box. In the second box, enter the amount you paid for it. Displayed will be how much money you would have in the future if you had invested your money instead. 
 		</div><br>
 		<!-- form -->
+		  <form class="numbers-entry">
 			<div class="title">Create category name below</div>
 			<input type='text' placeholder="Category Name" class="cat-name" id="listName">
 			<button class="input-button" id="save">save</button>
@@ -33,20 +34,27 @@
 				<input type="text" placeholder="What I bought" class="input-item" id="item-bought">
 				<input type="text" placeholder="What I paid for it" class="input-price" id="price-paid">
 				<button class="input-button" id="add-to-list">add</button>
+		  </form>
 	</div>
 	<br>
 	<!-- output page -->
-	<div id = 'middle'>
-		
-			
-				<div id='truevalue'>What You Really Paid </div>
-					<div class="row-list" id="item"></div>
+	<div id = 'middle' class='middle'>
+			<table id="budget-table" class="budget-table">
+				<tr>
+					<th class="item-header">Item</th>
+					<th class="paid-header">What You Paid</th>
+					<th class="really-paid-header">What You Really Paid</th>
+				</tr>
+			</table>	
+				<div id='truevalue' class='truevalue'>What You Really Paid </div>
+					<div class="row-list" id="item">
+					</div>
 						
 				
 	</div>
 	<!-- history -->
-	<div id = 'bottom'><br>
-	<button class="clear-button" id="clear">clear</button><div id="name"><button class="delete-cat-button" id="delete-category">delete list</button></div>  
+	<div id = 'bottom' class='bottom'><br>
+	<button class="clear-button" id="clear">clear</button><div id="name" class="name"><button class="delete-cat-button" id="delete-category">delete list</button></div>  
 	</div>
 	<div id='foot'><input type='text' placeholder='text' id='clickable'></div>
 	<div id='foot2' contenteditable="true"></div>

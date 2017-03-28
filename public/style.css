@@ -34,7 +34,7 @@ h2 {
     margin: auto;
     display: block;
     margin: auto;
-    height: 30em;
+    height: 45em;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center bottom;
@@ -47,6 +47,10 @@ h2 {
     /* background: linear-gradient(to left, #F3A193 , #6D728B); //W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
+.budget-table {
+    display: none;
+}
+
 #cat-name{
     display: none;
 }
@@ -66,16 +70,32 @@ h2 {
 .dbId{
     display: none;
 }
-
-#top, #middle, #bottom {
-    width: 45em;
+.middle {
+    width: 90%;
+}
+#middle {
+    margin: auto;
+    color: #454858;
+}
+.bottom {
+    width: 90%;
     margin: auto;
     color: #454858;
 }
 #bottom {
     display: none;
 }
-	
+.top {
+    width: 90%;
+    margin: auto;
+    color: #454858;
+}
+.instructions {
+
+}
+.numbers-entry {
+
+}
 
 li {
 	list-style: none;
@@ -154,10 +174,10 @@ input {
     font-size: .9em;
 
 }
-#name {
+.name {
     display: inline-block;
     float: right;
-    margin-right: 9.5em;
+    margin-right: 10%;
     margin-top: .9em;
     
 }
@@ -166,13 +186,15 @@ input {
     font-weight: 100;
     text-transform: capitalize;
 }
-#truevalue{
-    display: none;
-    width: 14em;
-    text-align: right;
+.truevalue {
     font-size: 2em;
     font-weight: 100;
+    text-align: right;
+    width: 14em;
     margin: 1em 0 .5em 0;
+}
+#truevalue{
+    display: none;
 }
 .clear-button{
     font-size: 1.6em;
@@ -206,11 +228,9 @@ input {
     background-color: darkred;
     cursor: pointer;
 }
-
 #footer {
 	height: 100em;
 }
-
 #add-to-list, #save-updated-list, #get-history, #save{
 }
 #foot{
@@ -222,10 +242,23 @@ input {
     border: none;
     background: yellow;
 }
-
+@media only screen and (max-width: 1200px) {
+    .header-image {
+        height: 30em;
+    }
+}
 @media only screen and (max-width: 600px) {
     .header-image {
         background-image: url('/assets/pbank-m.jpg'); 
+    }
+    .row-list {
+        font-size: 1.8em;
+    }
+    .middle {
+        width: 90%;
+    }
+    .truevalue {
+        font-size: 1.8em;
     }
 
 }
@@ -233,7 +266,27 @@ input {
     .header-image {
         background-image: url('/assets/pbank-m.jpg'); 
     }
+    .top {
+        font-size: .85em;
+    }
+    .middle {
+        font-size: .75em;
+    }
+    .bottom {
+        font-size: .75em;
+    }
 
+}
+@media only screen and (max-width: 400px) {
+    .row-list {
+        font-size: 1.5em;
+    }
+    .truevalue {
+        font-size: 1.6em;
+    }
+    .numbers-entry {
+        font-size: .85em;
+    }
 }
 
 
