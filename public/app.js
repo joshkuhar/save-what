@@ -150,7 +150,12 @@ var deleteCategory = function(id){
 
 // Listeners
 // Calculate item and add to list
-$('#add-to-list').click(function(){ 
+$('#add-to-list').click(function(event){ 
+    event.preventDefault();
+    if ($('#cat-container').html() === ""){
+        alert("Please enter a name for your list.");
+        return;
+    } 
     var item = $('#item-bought').val();
     var price = parseInt($('#price-paid').val());
     var newPrice = calculate(price, averageTwentyReturn);
@@ -163,14 +168,16 @@ $('#add-to-list').click(function(){
 });
 
 // Delete item from  list
-$('#item').on('click', '#delete-item', function(){
+$('#item').on('click', '#delete-item', function(event){
+    event.preventDefault();
     var id = $(this).parent().attr('id');
     console.log(id);
     $(this).parent().remove();
     deleteFromDB(id);
     });
 // Save list name
-$('#save').click(function(){
+$('#save').click(function(event){
+    event.preventDefault();
     if ($('#listName').val() === ""){
         alert("Please enter a name for your list.");
         return;
@@ -181,7 +188,8 @@ $('#save').click(function(){
     // $(this).prop("disabled",true);
 });
 // Retrieve previous lists with search name
-$('#get-category').click(function(){
+$('#get-category').click(function(event){
+    event.preventDefault();
     if (existingList == true){
         alert("Please clear current list before viewing a new one.")
         return;
@@ -196,14 +204,16 @@ $('#get-category').click(function(){
     $('#save').prop("disabled",false);
 });
 //Save updated list to data base
-$('#save-updated-list').click(function(){
+$('#save-updated-list').click(function(event){
+    event.preventDefault();
     var listId = $('#list-id').text();
     List.items = removeIdFromCachedItems();
     editItem(listId, List);
     List = {};
 });
 // Clear previous list
-$('#clear').click(function(){
+$('#clear').click(function(event){
+    event.preventDefault();
     // $('#delete-category').css('display', 'none');
     $('#clear').hide();
     $('#item').empty();
@@ -216,7 +226,8 @@ $('#clear').click(function(){
 });
 
 // Delete previous lists
-$('#delete-category').click(function(){
+$('#delete-category').click(function(event){
+    event.preventDefault();
     var id = $('#cat-container span:first-child').attr('id');
     deleteCategory(id);
     clearViews();   
@@ -260,9 +271,11 @@ var displayItem = function(id, item, price){
     $('#truevalue').show();
 };
 // edit item name
-$('#item').on('click', 'span', function(){
+$('#item').on('click', 'span', function(event){
+    event.preventDefault();
     $(this).hide().next().show();
     $('.editName').on('keydown', function(event){
+        event.preventDefault();
         var id = $(this).parent().attr('id');
         var name = $(this).val();
         if(event.keyCode == 13) {
@@ -273,8 +286,8 @@ $('#item').on('click', 'span', function(){
     });
 });
 
-$('#cat-container').on('click', 'span', function(){
-    console.log($(this).text());
+$('#cat-container').on('click', 'span', function(event){
+    event.preventDefault();
     $('.category-name').hide();
     $('#cat-name').show();
     $('#cat-name').on('keydown', function(event){
