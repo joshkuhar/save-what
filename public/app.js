@@ -80,12 +80,24 @@ var getCategory = function(name){
         contentType: 'application/json'
     });
     ajax.done(  function  (result)    {
+        if(result == null){
+            console.log("Category doesn't exist");
+            return;
+        }
         $('#delete-category').show();
         displayCategoryName(result._id, result.name);
         for (var indx = 0; indx<result.items.length; indx++){
             var x = result.items[indx];
             displayItem(x._id, x.item.name, x.item.price);
         }
+        $('#search').val('');
+        showClearDelete();
+        existingList = true;
+        $('#truevalue').show();
+        $('#name').show();
+        $('#save').prop("disabled",false);
+        $('#cat-name-input').hide();
+        $('#cat-list').show();
     });
 };
 // POST ENDPOINTS
@@ -198,14 +210,6 @@ $('#get-category').click(function(event){
     }
     var search = $('#search').val();    
     getCategory(search);
-    $('#search').val('');
-    showClearDelete();
-    existingList = true;
-    $('#truevalue').show();
-    $('#name').show();
-    $('#save').prop("disabled",false);
-    $('#cat-name-input').hide();
-    $('#cat-list').show();
 });
 //Save updated list to data base
 $('#save-updated-list').click(function(event){
