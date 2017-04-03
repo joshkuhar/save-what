@@ -178,13 +178,15 @@ $('#item').on('click', '#delete-item', function(event){
 // Save list name
 $('#save').click(function(event){
     event.preventDefault();
-    if ($('#listName').val() === ""){
-        alert("Please enter a name for your list.");
-        return;
-    } 
+    // if ($('#listName').val() === ""){
+    //     alert("Please enter a name for your list.");
+    //     return;
+    // } 
     var categoryName = $('#listName').val();
     postCategoryName({name: categoryName});
     $('#listName').val("");
+    $('#cat-name-input').hide();
+    $('#cat-list').show();
     // $(this).prop("disabled",true);
 });
 // Retrieve previous lists with search name
@@ -202,6 +204,8 @@ $('#get-category').click(function(event){
     $('#truevalue').show();
     $('#name').show();
     $('#save').prop("disabled",false);
+    $('#cat-name-input').hide();
+    $('#cat-list').show();
 });
 //Save updated list to data base
 $('#save-updated-list').click(function(event){
@@ -223,6 +227,8 @@ $('#clear').click(function(event){
     $('#save').prop("disabled",false);
     $('#bottom').hide();
     $('#truevalue').hide();
+    $('#cat-name-input').show();
+    $('#cat-list').hide();
 });
 
 // Delete previous lists
@@ -235,6 +241,8 @@ $('#delete-category').click(function(event){
     $('#truevalue').hide();
     $('#bottom').hide();
     $('#save').prop("disabled",false);
+    $('#cat-list').hide();
+    $('#cat-name-input').show();
 });
 
 //views

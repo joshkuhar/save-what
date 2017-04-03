@@ -57,8 +57,13 @@ h2 {
 .cat-name-display {
     font-size: 3em;
     /* margin: 1em auto; */
-    margin-top: 1.5em;
     text-transform: capitalize;
+}
+#cat-name-input {
+
+}
+#cat-list {
+    display: none;
 }
 .cat-name-insert {
 
@@ -170,9 +175,8 @@ input {
     cursor: pointer;
 }
 
-.title{
-    font-size: .9em;
-
+.title {
+    font-size: 1.75em;
 }
 .name {
     display: inline-block;

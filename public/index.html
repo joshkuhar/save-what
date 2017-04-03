@@ -19,21 +19,24 @@
 	<!-- instructions -->
 	<section class="main-list">
 	<div id = 'top' class="top">
-		<div class="instructions">Create a name for list. And then enter something you recently purchased in the first box. In the second box, enter the amount you paid for it. Displayed will be how much money you would have in the future if you had invested your money instead. 
-		</div><br>
+		<!-- <div class="instructions">Create a name for list. And then enter something you recently purchased in the first box. In the second box, enter the amount you paid for it. Displayed will be how much money you would have in the future if you had invested your money instead. 
+		</div><br> -->
 		<!-- form -->
 		  <form class="numbers-entry" id="form-1">
-			<div class="title">Create category name below</div>
+		   <div id="cat-name-input">
+			<div class="title">Create a category for a list of items you recently purchased and then click save.</div>
 			<input type='text' placeholder="Category Name" class="cat-name" id="listName">
 			<button class="input-button" id="save" type="submit" form="form-1">save</button>
-			
+		   </div>
 			<p>
+		   <div id="cat-list">
 			<div id="cat-container" class="cat-name-display"></div><p>
 
-			<div class="title">Enter information below</div>
+			<div class="title">Enter an item that you recently purchased and you will see how much you really paid for the item.</div>
 				<input type="text" placeholder="What I bought" class="input-item" id="item-bought">
 				<input type="text" placeholder="What I paid for it" class="input-price" id="price-paid">
 				<button class="input-button" id="add-to-list">add</button>
+		   </div>		
 		  </form>
 	</div>
 	<br>
