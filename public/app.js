@@ -15,8 +15,8 @@ var token = null;
 var createItem = function(item, price){
     return {item: {name: item, price: price}};
 };
-var calculate = function(price, multiplyer) {
-    return price * multiplyer;
+var calculate = function(price, multiplier) {
+    return price * multiplier;
 };
 var cacheItem = function(item){
     cachedItems.push(item);
@@ -31,46 +31,6 @@ var removeFromCache = function(id){
 };
 // ENDPOINTS
 
-// GET sign in username and password
-var submitAuth = function(username, password){
-    var ajax = $.ajax('/hidden', {
-        type: 'GET',
-        // data: JSON.stringify(data),
-        dataType: 'json',
-        contentType: 'application/json',
-        error: function(XHR, res, err){
-            console.log(XHR, res, err);
-        },
-        success: function(){
-
-        }
-    });
-    ajax.done(function(result){
-        console.log(result);
-        var response = $('#login-success');
-        if(result){
-            token = result.user;
-            response.append("SUCCESS, you logged in as User: "+ token);
-        } else {
-            response.append("Sorry, try again");
-            console.log(result);
-        }
-        
-    });
-};
-
-// POST Username Password
-var createAuth = function(data){
-    var ajax = $.ajax('/users', {
-        type: 'POST',
-        data: JSON.stringify(data),
-        dataType: 'json',
-        contentType: 'application/json'
-    });
-    ajax.done(function(result){
-        console.log(result);
-    });
-};
 // GET endpoint
 var getCategory = function(name){
     var ajax = $.ajax('/category/' + name, {
@@ -84,7 +44,6 @@ var getCategory = function(name){
             console.log("Category doesn't exist");
             return;
         }
-        $('#delete-category').show();
         displayCategoryName(result._id, result.name);
         for (var indx = 0; indx<result.items.length; indx++){
             var x = result.items[indx];
@@ -94,10 +53,11 @@ var getCategory = function(name){
         showClearDelete();
         existingList = true;
         $('#truevalue').show();
-        $('#name').show();
+        
         $('#save').prop("disabled",false);
         $('#cat-name-input').hide();
         $('#cat-list').show();
+        $('#dcat').show();
     });
 };
 // POST ENDPOINTS
@@ -124,6 +84,7 @@ var postItem = function(id, item){
     ajax.done(function(result){
         cacheItem(result);
         displayItem(result._id, result.item.name, result.item.price);
+        $('#dcat').show();
     });
 }
 
@@ -177,6 +138,8 @@ $('#add-to-list').click(function(event){
     $('#price-paid').val('');
     $('#item-bought').focus();
     showClearDelete();
+    $('#dcat').show();
+
 });
 
 // Delete item from  list
@@ -225,7 +188,6 @@ $('#clear').click(function(event){
     // $('#delete-category').css('display', 'none');
     $('#clear').hide();
     $('#item').empty();
-    $('#name').hide();
     $('#cat-container').empty();
     clearModels();
     $('#save').prop("disabled",false);
@@ -233,10 +195,11 @@ $('#clear').click(function(event){
     $('#truevalue').hide();
     $('#cat-name-input').show();
     $('#cat-list').hide();
+    $('#dcat').hide();
 });
 
 // Delete previous lists
-$('#delete-category').click(function(event){
+$('#dcat').click(function(event){
     event.preventDefault();
     var id = $('#cat-container span:first-child').attr('id');
     deleteCategory(id);
@@ -247,14 +210,15 @@ $('#delete-category').click(function(event){
     $('#save').prop("disabled",false);
     $('#cat-list').hide();
     $('#cat-name-input').show();
+    $('#dcat').hide();
 });
 
 //views
 var clearViews = function(){
-    $('#delete-category').css('display', 'none');
+    $('#dcat').hide();
     $('#clear').hide();
     $('#item').empty();
-    $('#name').empty();
+    // $('#name').empty();
     $('#cat-container').empty();
 };
 var showSavedListByName = function(index, value){
@@ -324,34 +288,6 @@ var editCategoryName = function(id, data){
     });
 };
 
-$('#login-page').on('click', function(){
-    $('#login-form').show();
-    $('#main-page').hide();
-});
-
-$('#go-back').on('click', function(){
-    $('#login-credentials').show();
-    $('#create-credentials').hide();
-    $('#login-form').hide();
-    $('#main-page').show();
-});
-
-$('#authenticate').click(function(){
-    $('#login-success').empty();
-    var username = $('#username');
-    var password = $('#password');
-    submitAuth(username.val(), password.val());
-    username.val('');
-    password.val('');
-});
-
-$('#create-auth').click(function(){
-    var username = $('#create-username');
-    var password = $('#create-password');
-    createAuth({username: username.val(), password: password.val()});
-    username.val('');
-    password.val('');
-});
 $('#start-create').on('click', function(){
     $('#login-credentials').hide();
     $('#create-credentials').show();
@@ -362,13 +298,10 @@ var displayCategoryName = function(id, name) {
 
 };
 var showClearDelete = function(){
-    $('#delete-category').show();
+    $('#dcat').show();
     $('#clear').show();
     $('#bottom').show();
 };
-
-
-
 
 
 $('#foot2').on('click', function(){
