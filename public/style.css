@@ -34,7 +34,7 @@ h2 {
     margin: auto;
     display: block;
     margin: auto;
-    height: 45em;
+    height: 30em;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center bottom;
@@ -252,9 +252,10 @@ input {
     }
 }
 @media only screen and (max-width: 600px) {
-    .header-image {
+   /* .header-image {
         background-image: url('/assets/pbank-m.jpg'); 
     }
+    */
     .row-list {
         font-size: 1.8em;
     }
