@@ -190,11 +190,28 @@ input {
     font-weight: 100;
     text-transform: capitalize;
 }
+#hover-icon {
+    font-size: .5em;
+    font-family: serif;
+    vertical-align: top;
+    margin-left: .2em;
+    color: cornflowerblue;
+    cursor: pointer;
+}
+#hover-explanation {
+    display: none;
+    /*display: inline-block;*/
+    width: 17em;
+    vertical-align: top;
+    font-size: .8em;
+    margin-left: 1em;
+}
+
 .truevalue {
     font-size: 2em;
     font-weight: 100;
-    text-align: right;
-    width: 14em;
+    text-align: left;
+    width: 9em;
     margin: 1em 0 .5em 0;
 }
 #truevalue{

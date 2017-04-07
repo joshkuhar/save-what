@@ -52,7 +52,7 @@ var getCategory = function(name){
         $('#search').val('');
         showClearDelete();
         existingList = true;
-        $('#truevalue').show();
+        $('#truevalue').css('display', 'inline-block');
         
         $('#save').prop("disabled",false);
         $('#cat-name-input').hide();
@@ -244,8 +244,15 @@ var displayItem = function(id, item, price){
     var deleteBttn = '<button class="delete-button" id="delete-item">x</button>';
     var listItemClose = '</li>';
     $('#item').append(open + firstSpan + secondSpan + deleteBttn + listItemClose);
-    $('#truevalue').show();
+    $('#truevalue').css('display', 'inline-block');
 };
+
+$('#hover-icon').mouseenter(function(){
+    $('#hover-explanation').css('display', 'inline-block');
+});
+$('#hover-icon').mouseleave(function(){
+    $('#hover-explanation').css('display', 'none');
+});
 // edit item name
 $('#item').on('click', 'span', function(event){
     event.preventDefault();
