@@ -31,7 +31,7 @@ var removeFromCache = function(id){
 };
 // ENDPOINTS
 
-// GET endpoint
+// GET endpoint         
 var getCategory = function(name){
     var ajax = $.ajax('/category/' + name, {
         type: 'GET',
