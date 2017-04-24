@@ -133,7 +133,7 @@ $('#add-to-list').click(function(event){
     var price = parseFloat($('#price-paid').val()).toFixed(2);//parseFloat.toFixed(2)
     var newPrice = calculate(price, averageTwentyReturn);
     var id = $('.category-name').attr('id');
-    postItem(id, createItem(item, newPrice));
+    postItem(id, createItem(item, newPrice.toFixed(2)));
     $('#item-bought').val('');
     $('#price-paid').val('');
     $('#item-bought').focus();
