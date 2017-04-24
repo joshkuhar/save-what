@@ -130,7 +130,7 @@ $('#add-to-list').click(function(event){
         return;
     } 
     var item = $('#item-bought').val();
-    var price = parseInt($('#price-paid').val());
+    var price = parseFloat($('#price-paid').val()).toFixed(2);//parseFloat.toFixed(2)
     var newPrice = calculate(price, averageTwentyReturn);
     var id = $('.category-name').attr('id');
     postItem(id, createItem(item, newPrice));
