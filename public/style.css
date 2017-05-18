@@ -68,6 +68,17 @@ h2 {
 .cat-name-insert {
 
 }
+.lookup-button {
+    border: .02em solid white;
+    border-radius: 5px;
+    vertical-align: bottom;
+    width: 4em;
+    margin-left: .1em;
+    padding-bottom: .2em;
+    background-color: #F3A193;
+    color: white;
+    font-weight: 100;
+}
 .editName{
     display:none;
     width:6.6;
