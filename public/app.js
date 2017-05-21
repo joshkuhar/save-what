@@ -129,6 +129,15 @@ $('#add-to-list').click(function(event){
         alert("Please enter a name for your list.");
         return;
     } 
+ 
+    if ($('#item-bought').val() === '' ) {
+        alert("Please enter what you bought")
+        return
+    }
+    if ($('#price-paid').val() === '' ) {
+        alert("Please enter what you paid")
+        return
+    }      
     var item = $('#item-bought').val();
     var price = parseFloat($('#price-paid').val()).toFixed(2);//parseFloat.toFixed(2)
     var newPrice = calculate(price, averageTwentyReturn);
@@ -153,10 +162,10 @@ $('#item').on('click', '#delete-item', function(event){
 // Save list name
 $('#save').click(function(event){
     event.preventDefault();
-    // if ($('#listName').val() === ""){
-    //     alert("Please enter a name for your list.");
-    //     return;
-    // } 
+    if ($('#listName').val() === ""){
+        alert("Please enter a name for your list.");
+        return;
+    } 
     var categoryName = $('#listName').val();
     postCategoryName({name: categoryName});
     $('#listName').val("");
