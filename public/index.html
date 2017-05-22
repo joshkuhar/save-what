@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="UTF-8" name="viewport" content="width=device-width" />
 	<title>Document</title>
 	<link rel="stylesheet" href="style.css">
 </head>
@@ -10,11 +10,12 @@
 <section id='main-page'>
 	<div class="header-image">
 		<h1>Save What?</h1>
-			<div id="search-container"> 
-				<div class="title">Look up a previous list</div>
-					<input type="text" placeholder="get saved list name" id="search">
-						<input class="lookup-button" type="submit" value=" get " id="get-category">
-			</div>
+		<div id="search-container"> 
+			<div class="title">Look up a previous list</div>
+			<input type="text" placeholder="get saved list name" id="search">
+			<input class="lookup-button" type="submit" value=" get " id="get-category">
+		</div>
+		<div class="instructions-top" id="instructions-top">Think you know how much you're spending? Follow the instructions below to see if you're right.</div>
 	</div>
 	<!-- instructions -->
 	<section class="main-list">
@@ -28,6 +29,8 @@
 			<input type='text' placeholder="List Name" class="cat-name" id="listName">
 			<button class="input-button" id="save" type="submit" form="form-1">save</button>
 		   </div>
+		   </form>
+		   <form>
 			<p>
 		   <div id="cat-list">
 			<div id="cat-container" class="cat-name-display"></div><p>

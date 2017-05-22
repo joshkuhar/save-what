@@ -122,14 +122,28 @@ var deleteCategory = function(id){
 }
 
 // Listeners
-// Calculate item and add to list
-$('#add-to-list').click(function(event){ 
+
+
+// Save list name
+$('#save').click(function(event){
     event.preventDefault();
-    if ($('#cat-container').html() === ""){
+    if ($('#listName').val() === ""){
         alert("Please enter a name for your list.");
         return;
     } 
- 
+    var categoryName = $('#listName').val();
+    postCategoryName({name: categoryName});
+    $('#listName').val("");
+    $('#cat-name-input').hide();
+    // $('#instructions-top').hide();
+    $('#cat-list').show();
+    // $(this).prop("disabled",true);
+});
+
+
+// Calculate item and add to list
+$('#add-to-list').click(function(event){ 
+    event.preventDefault();
     if ($('#item-bought').val() === '' ) {
         alert("Please enter what you bought")
         return
@@ -137,9 +151,13 @@ $('#add-to-list').click(function(event){
     if ($('#price-paid').val() === '' ) {
         alert("Please enter what you paid")
         return
-    }      
+    }
     var item = $('#item-bought').val();
     var price = parseFloat($('#price-paid').val()).toFixed(2);//parseFloat.toFixed(2)
+    if ( isNaN(price) ) {
+        alert("Please enter a number for what you paid")
+        return
+    }
     var newPrice = calculate(price, averageTwentyReturn);
     var id = $('.category-name').attr('id');
     postItem(id, createItem(item, newPrice.toFixed(2)));
@@ -159,23 +177,14 @@ $('#item').on('click', '#delete-item', function(event){
     $(this).parent().remove();
     deleteFromDB(id);
     });
-// Save list name
-$('#save').click(function(event){
-    event.preventDefault();
-    if ($('#listName').val() === ""){
-        alert("Please enter a name for your list.");
-        return;
-    } 
-    var categoryName = $('#listName').val();
-    postCategoryName({name: categoryName});
-    $('#listName').val("");
-    $('#cat-name-input').hide();
-    $('#cat-list').show();
-    // $(this).prop("disabled",true);
-});
+
 // Retrieve previous lists with search name
 $('#get-category').click(function(event){
     event.preventDefault();
+    if ($('#search').val() == '' ){
+        alert("Please enter a list name to search for.")
+        return;
+    }
     if (existingList == true){
         alert("Please clear current list before viewing a new one.")
         return;

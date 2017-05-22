@@ -19,6 +19,9 @@ h1 {
     padding-top: .2em;
     color: #454858;
 }
+#search {
+    border-radius: 5px;
+}
 #search-container {
     display: inline-block;
     float: right;
@@ -39,6 +42,12 @@ h2 {
     background-repeat: no-repeat;
     background-position: center bottom;
     box-shadow: 0px 1px 10px 0px #D86A5D;
+}
+.instructions-top{
+    margin-top: 13em;
+    font-size: 1.2em;
+    width: 40%;
+    margin-left: 5em;
 }
 .main-list {
     padding-top: 1em;
@@ -78,6 +87,10 @@ h2 {
     background-color: #F3A193;
     color: white;
     font-weight: 100;
+}
+.lookup-button:hover {
+    background-color: #D86A5D;
+    cursor: pointer;
 }
 .editName{
     display:none;
@@ -290,6 +303,14 @@ input {
         height: 30em;
     }
 }
+@media only screen and (max-width: 1000px) {
+    h1{
+        margin-left: 1.75em;
+    }
+    #search-container {
+        font-size: .9;
+    }
+}
 @media only screen and (max-width: 600px) {
    /* .header-image {
         background-image: url('/assets/pbank-m.jpg'); 
@@ -307,11 +328,27 @@ input {
     .money-wrapper-top {
         margin-left: 1.3em;
     }
+    h1 {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    #search-container {
+        margin: 0 auto;
+        text-align: center;
+        padding-top: .5em;
+        display: block;
+        float: none;
+    }
+    .instructions-top {
+        font-size: 1em;
+    }
 
 }
 @media only screen and (max-width: 500px) {
     .header-image {
         background-image: url('/assets/pbank-m.jpg'); 
+        /*background-image: url('/assets/pbank-sm.jpg'); */
     }
     .top {
         font-size: .85em;
@@ -321,6 +358,15 @@ input {
     }
     .bottom {
         font-size: .75em;
+    }
+    .instructions-top {
+        margin-top: 18.5em;
+        font-size: .9em;
+        width: 60%;
+        margin-left: 20%;
+        /* text-align: center; */
+        color: #6D728B;
+        text-shadow: 0px 1px 1px #F2F2F0;        
     }
 
 }
